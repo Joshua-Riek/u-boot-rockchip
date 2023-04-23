@@ -6,7 +6,7 @@
 #
 
 # Process args and auto set variables
-source ./${srctree}/arch/arm/mach-rockchip/fit_args.sh
+source ${srctree}/arch/arm/mach-rockchip/fit_args.sh
 rm -f ${srctree}/*.digest ${srctree}/*.bin.gz ${srctree}/bl31_0x*.bin
 
 # Periph register

@@ -5,7 +5,7 @@
 # SPDX-License-Identifier:     GPL-2.0+
 #
 
-source ./${srctree}/arch/arm/mach-rockchip/fit_nodes.sh
+source ${srctree}/arch/arm/mach-rockchip/fit_nodes.sh
 
 gen_header
 gen_uboot_node
