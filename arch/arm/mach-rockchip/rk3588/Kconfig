@@ -6,6 +6,15 @@ config TARGET_EVB_RK3588
 	help
 	  RK3588 EVB is a evaluation board for Rockchp RK3588.
 
+config TARGET_ROC_RK3588S_PC
+	bool "ROC_RK3588S_PC"
+	select BOARD_LATE_INIT
+	help
+	  ROC_RK3588S_PC is a RK3588S-based board with 3 USB ports(1 TypeC port),
+	  HDMI, DP, micro-SD card, audio, M.2 PCIE/SATA, WiFi  and Gigabit Ethernet,
+	  It also includes on-board eMMC and LPDDR4. Expansion connectors
+	  provide access to display pins, MIPI-CSI/DSI, I2C, SPI, UART and GPIOs.
+
 config SYS_SOC
 	default "rockchip"
 
@@ -13,5 +22,6 @@ config SYS_MALLOC_F_LEN
 	default 0x400
 
 source board/rockchip/evb_rk3588/Kconfig
+source board/firefly/roc-rk3588s-pc/Kconfig
 
 endif

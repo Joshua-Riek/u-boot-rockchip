@@ -1,0 +1,15 @@
+if TARGET_ROC_RK3588S_PC
+
+config SYS_BOARD
+	default "roc-rk3588s-pc"
+
+config SYS_VENDOR
+	default "firefly"
+
+config SYS_CONFIG_NAME
+	default "roc-rk3588s-pc"
+
+config BOARD_SPECIFIC_OPTIONS # dummy
+	def_bool y
+
+endif
