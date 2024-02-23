@@ -396,6 +396,9 @@ export RCS_FIND_IGNORE := \( -name SCCS -o -name BitKeeper -o -name .svn -o    \
 			  -prune -o
 export RCS_TAR_IGNORE := --exclude SCCS --exclude BitKeeper --exclude .svn \
 			 --exclude CVS --exclude .pc --exclude .hg --exclude .git
+KBUILD_CFLAGS += $(call cc-option,-Wno-address)
+KBUILD_CFLAGS += $(call cc-option,-Wno-maybe-uninitialized)
+KBUILD_CFLAGS += $(call cc-option,-Wno-enum-int-mismatch)
 
 # ===========================================================================
 # Rules shared between *config targets and build targets
