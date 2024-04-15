@@ -1390,8 +1390,8 @@ static void tcpm_pd_rx_handler(struct tcpm_port *port,
 		 */
 		if (!!(le16_to_cpu(msg->header) & PD_HEADER_DATA_ROLE) ==
 		    (port->data_role == TYPEC_HOST)) {
-			printf("Data role mismatch, initiating error recovery\n");
-			tcpm_set_state(port, ERROR_RECOVERY, 0);
+			printf("Data role mismatch, hard resetting...\n");
+			tcpm_set_state(port, HARD_RESET_SEND, 0);
 		} else {
 			if (cnt)
 				tcpm_pd_data_request(port, msg);

@@ -15,6 +15,12 @@ config TARGET_ROC_RK3588S_PC
 	  It also includes on-board eMMC and LPDDR4. Expansion connectors
 	  provide access to display pins, MIPI-CSI/DSI, I2C, SPI, UART and GPIOs.
 
+config TARGET_ARMSOM_SIGE7_RK3588
+	bool "ARMSOM_SIGE7_RK3588"
+	select BOARD_LATE_INIT
+	help
+	  foobar
+
 config SYS_SOC
 	default "rockchip"
 
@@ -23,5 +29,6 @@ config SYS_MALLOC_F_LEN
 
 source board/rockchip/evb_rk3588/Kconfig
 source board/firefly/roc-rk3588s-pc/Kconfig
+source board/armsom/armsom-sige7-rk3588/Kconfig
 
 endif
