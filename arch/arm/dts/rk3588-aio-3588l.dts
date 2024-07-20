@@ -1,0 +1,261 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright (c) 2021 Rockchip Electronics Co., Ltd
+ *
+ */
+
+/dts-v1/;
+#include "rk3588.dtsi"
+#include "rk3588-u-boot.dtsi"
+#include <dt-bindings/input/input.h>
+
+/ {
+	model = "ROC-RK3588S-PC";
+	compatible = "firefly,roc-rk3588s-pc", "firefly,station-m3", "rockchip,rk3588";
+
+	config {
+		u-boot,dm-pre-reloc;
+		u-boot,boot-led = "red";
+	};
+
+	vcc12v_dcin: vcc12v-dcin {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc12v_dcin";
+		regulator-always-on;
+		regulator-boot-on;
+		regulator-min-microvolt = <12000000>;
+		regulator-max-microvolt = <12000000>;
+	};
+
+	vcc3v3_pcie20: vcc3v3-pcie20 {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc3v3_pcie20";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-always-on;
+		enable-active-high;
+		gpios = <&gpio1 RK_PD7 GPIO_ACTIVE_HIGH>;
+		startup-delay-us = <5000>;
+		vin-supply = <&vcc12v_dcin>;
+	};
+
+	vcc5v0_host: vcc5v0-host {
+		status = "okay";
+		compatible = "regulator-fixed";
+		regulator-name = "vcc5v0_host";
+		regulator-boot-on;
+		regulator-always-on;
+		reset-delay-us = <200000>;
+		startup-delay-us = <1200000>;
+		enable-active-high;
+		gpio = <&gpio1 RK_PB6 GPIO_ACTIVE_HIGH>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&vcc5v0_host_en>;
+		vin-supply = <&vcc5v0_usb>;
+	};
+
+	vcc5v0_sys: vcc5v0-sys {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc5v0_sys";
+		regulator-always-on;
+		regulator-boot-on;
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		vin-supply = <&vcc12v_dcin>;
+	};
+
+	vbus5v0_typec_pwr_en: vbus5v0-typec-pwr-en-regulator {
+		status = "okay";
+		compatible = "regulator-fixed";
+		enable-active-high;
+		regulator-name = "vbus5v0_typec_pwr_en";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		gpio = <&gpio1 RK_PB1 GPIO_ACTIVE_HIGH>;
+		vin-supply = <&vcc5v0_usb>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&typec5v_pwren>;
+	};
+
+	vcc5v0_usbdcin: vcc5v0-usbdcin {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc5v0_usbdcin";
+		regulator-always-on;
+		regulator-boot-on;
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		vin-supply = <&vcc12v_dcin>;
+	};
+
+	vcc5v0_usb: vcc5v0-usb {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc5v0_usb";
+		regulator-always-on;
+		regulator-boot-on;
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		vin-supply = <&vcc12v_dcin>;
+	};
+
+	vcc_1v1_nldo_s3: vcc-1v1-nldo-s3 {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc_1v1_nldo_s3";
+		regulator-always-on;
+		regulator-boot-on;
+		regulator-min-microvolt = <1100000>;
+		regulator-max-microvolt = <1100000>;
+		vin-supply = <&vcc5v0_sys>;
+	};
+
+	vcc_hub_reset: vcc-hub-reset-regulator {
+		status = "okay";
+		compatible = "regulator-fixed"; 
+		regulator-name = "vcc_hub_reset";
+		regulator-boot-on;
+		regulator-always-on; 
+		enable-active-high;
+		gpio = <&gpio1 RK_PB0 GPIO_ACTIVE_HIGH>;
+	};
+
+	firefly_leds: leds {
+		status = "okay";
+		u-boot,dm-pre-reloc;
+		compatible = "gpio-leds";
+		pinctrl-names = "default";
+		pinctrl-0 =<&leds_gpio>;
+		blue_led: blue-led {
+			u-boot,dm-pre-reloc;
+			label = "blue";
+			default-state = "on";
+			gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;//blue led
+		};
+
+		red_led: red-led {
+			u-boot,dm-pre-reloc;
+			label = "red";
+			default-state = "off";
+			gpios = <&gpio3 RK_PB2 GPIO_ACTIVE_HIGH>;//red led
+		};
+
+		green_led: green-led {
+			u-boot,dm-pre-reloc;
+			label = "green"; 
+			default-state = "off";
+			gpios = <&gpio3 RK_PC0 GPIO_ACTIVE_HIGH>;//green led
+		};
+	};
+
+	adc_keys: adc-keys {
+		status = "okay";
+		u-boot,dm-pre-reloc;
+		compatible = "adc-keys";
+		io-channels = <&saradc 1>;
+		io-channel-names = "buttons";
+		keyup-threshold-microvolt = <1800000>;
+		poll-interval = <100>;
+
+		recovery-key{
+			u-boot,dm-pre-reloc;
+			label = "F12";
+			linux,code = <KEY_F12>;
+			press-threshold-microvolt = <17000>;
+		};
+	};
+};
+
+&combphy0_ps {
+	status = "okay";
+	u-boot,dm-pre-reloc;
+};
+
+&pcie2x1l2 {
+	status = "okay";
+	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
+	u-boot,dm-pre-reloc;
+	vpcie3v3-supply = <&vcc3v3_pcie20>;
+};
+
+&usb_host0_ehci {
+	status = "okay";
+	u-boot,dm-pre-reloc;
+};
+
+&usb_host0_ohci {
+	status = "okay";
+	u-boot,dm-pre-reloc;
+};
+
+&usb2phy2_grf {
+	status = "okay";
+	u-boot,dm-pre-reloc;
+};
+
+&u2phy2 {
+	status = "okay";
+	u-boot,dm-pre-reloc;
+};
+
+&u2phy2_host {
+	status = "okay";
+	u-boot,dm-pre-reloc;
+};
+
+&usb_host1_ehci {
+	status = "okay";
+	u-boot,dm-pre-reloc;
+};
+
+&usb_host1_ohci {
+	status = "okay";
+	u-boot,dm-pre-reloc;
+};
+
+&usb2phy3_grf {
+	status = "okay";
+	u-boot,dm-pre-reloc;
+};
+
+&u2phy3 {
+	status = "okay";
+	u-boot,dm-pre-reloc;
+};
+
+&u2phy3_host {
+	status = "okay";
+	u-boot,dm-pre-reloc;
+};
+
+&gmac0 {
+	status = "disabled";
+	u-boot,dm-pre-reloc;
+};
+
+&pinctrl {
+	leds {
+		leds_gpio: leds-gpio {
+			rockchip,pins =
+				/* led_user */
+				<3 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>,
+				/* led_power */
+				<1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>,
+				/* led_user1 */
+				<3 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
+
+	usb {
+		vcc5v0_host_en: vcc5v0-host-en {
+			rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
+
+	usb-typec {
+		usbc0_int: usbc0-int {
+			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_up>;
+		};
+
+		typec5v_pwren: typec5v-pwren {
+			rockchip,pins = <1 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
+};
