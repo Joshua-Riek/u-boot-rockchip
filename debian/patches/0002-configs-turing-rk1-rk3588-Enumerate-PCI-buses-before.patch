@@ -1,0 +1,27 @@
+From 747a2b1ff46ce30196779b05e165c34784a4c311 Mon Sep 17 00:00:00 2001
+From: Joshua Riek <jjriek@verizon.net>
+Date: Mon, 19 Aug 2024 19:24:36 -0400
+Subject: [PATCH] configs: turing-rk1-rk3588: Enumerate PCI buses before boot
+ delay
+
+Signed-off-by: Joshua Riek <jjriek@verizon.net>
+---
+ configs/turing-rk1-rk3588_defconfig | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/configs/turing-rk1-rk3588_defconfig b/configs/turing-rk1-rk3588_defconfig
+index e6e1bda7ec1..e6f6ecdeae0 100644
+--- a/configs/turing-rk1-rk3588_defconfig
++++ b/configs/turing-rk1-rk3588_defconfig
+@@ -44,6 +44,8 @@ CONFIG_SPL_DM_SEQ_ALIAS=y
+ CONFIG_SPL_REGMAP=y
+ CONFIG_SPL_SYSCON=y
+ CONFIG_SATA=y
++CONFIG_USE_PREBOOT=y
++CONFIG_PREBOOT="pci enum"
+ CONFIG_SCSI_AHCI=y
+ CONFIG_AHCI_PCI=y
+ CONFIG_SPL_CLK=y
+-- 
+2.25.1
+

@@ -1,0 +1,126 @@
+Source: u-boot-rockchip
+Section: admin
+Priority: optional
+Maintainer: Joshua Riek <jjriek@verizon.net>
+Build-Depends: 
+ debhelper-compat (= 12),
+ parted,
+ gcc,
+ make,
+ bc,
+ bison,
+ flex,
+ device-tree-compiler,
+ udev,
+ python3,
+ libpython3-dev,
+ python3-pyelftools,
+ python3-setuptools,
+ python3-pkg-resources,
+ swig,
+ libfdt-dev,
+ libssl-dev,
+ uuid-dev,
+ libgnutls28-dev
+Standards-Version: 4.6.0
+Homepage: https://www.denx.de/wiki/U-Boot/
+Vcs-Browser: https://salsa.debian.org/debian/u-boot
+Vcs-Git: https://salsa.debian.org/debian/u-boot.git
+
+Package: u-boot-orangepi-5
+Architecture: arm64
+Priority: optional
+Depends: mtd-utils
+Provides: u-boot
+Replaces: u-boot
+Conflicts: u-boot
+Description: A boot loader for the Xunlong Orange Pi 5.
+ Das U-Boot is a cross-platform bootloader for embedded systems,
+ used as the default boot loader by several board vendors.  It is
+ intended to be easy to port and to debug, and runs on many
+ supported architectures, including PPC, ARM, MIPS, x86, m68k,
+ NIOS, and Microblaze.
+
+Package: u-boot-orangepi-5b
+Architecture: arm64
+Priority: optional
+Depends: mtd-utils
+Provides: u-boot
+Replaces: u-boot
+Conflicts: u-boot
+Description: A boot loader for the Xunlong Orange Pi 5B.
+ Das U-Boot is a cross-platform bootloader for embedded systems,
+ used as the default boot loader by several board vendors.  It is
+ intended to be easy to port and to debug, and runs on many
+ supported architectures, including PPC, ARM, MIPS, x86, m68k,
+ NIOS, and Microblaze.
+
+Package: u-boot-orangepi-5-plus
+Architecture: arm64
+Priority: optional
+Depends: mtd-utils
+Provides: u-boot
+Replaces: u-boot
+Conflicts: u-boot
+Description: A boot loader for the Xunlong Orange Pi 5 Plus.
+ Das U-Boot is a cross-platform bootloader for embedded systems,
+ used as the default boot loader by several board vendors.  It is
+ intended to be easy to port and to debug, and runs on many
+ supported architectures, including PPC, ARM, MIPS, x86, m68k,
+ NIOS, and Microblaze.
+
+Package: u-boot-rock-5a
+Architecture: arm64
+Priority: optional
+Depends: mtd-utils
+Provides: u-boot
+Replaces: u-boot
+Conflicts: u-boot
+Description: A boot loader for the Radxa ROCK 5A.
+ Das U-Boot is a cross-platform bootloader for embedded systems,
+ used as the default boot loader by several board vendors.  It is
+ intended to be easy to port and to debug, and runs on many
+ supported architectures, including PPC, ARM, MIPS, x86, m68k,
+ NIOS, and Microblaze.
+
+Package: u-boot-rock-5b
+Architecture: arm64
+Priority: optional
+Depends: mtd-utils
+Provides: u-boot
+Replaces: u-boot
+Conflicts: u-boot
+Description: A boot loader for the Radxa ROCK 5B.
+ Das U-Boot is a cross-platform bootloader for embedded systems,
+ used as the default boot loader by several board vendors.  It is
+ intended to be easy to port and to debug, and runs on many
+ supported architectures, including PPC, ARM, MIPS, x86, m68k,
+ NIOS, and Microblaze.
+
+Package: u-boot-nanopc-t6
+Architecture: arm64
+Priority: optional
+Depends: mtd-utils
+Provides: u-boot
+Replaces: u-boot
+Conflicts: u-boot
+Description: A boot loader for the FriendlyElec NanoPC T6.
+ Das U-Boot is a cross-platform bootloader for embedded systems,
+ used as the default boot loader by several board vendors.  It is
+ intended to be easy to port and to debug, and runs on many
+ supported architectures, including PPC, ARM, MIPS, x86, m68k,
+ NIOS, and Microblaze.
+
+Package: u-boot-turing-rk1
+Architecture: arm64
+Priority: optional
+Depends: mtd-utils
+Provides: u-boot
+Replaces: u-boot
+Conflicts: u-boot
+Description: A boot loader for the Turing RK1.
+ Das U-Boot is a cross-platform bootloader for embedded systems,
+ used as the default boot loader by several board vendors.  It is
+ intended to be easy to port and to debug, and runs on many
+ supported architectures, including PPC, ARM, MIPS, x86, m68k,
+ NIOS, and Microblaze.

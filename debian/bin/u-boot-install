@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -eE 
+
+disk="$1"
+if [ $# -ne 1 ]; then
+    echo "Usage: $(basename "$0") /dev/mmcblk0"
+    exit 1
+fi
+
+if [ ! -b "${disk}" ]; then
+    echo "$(basename "$0"): MMC device '${disk}' not found"
+    exit 1
+fi
+
+if [[ "${disk}" != /dev/mmcblk[0-1] ]]; then
+    echo "$(basename "$0"): MMC device '${disk}' is invalid"
+    exit 1
+fi
+
+echo "$(basename "$0"): writing U-Boot to MMC device"
+sudo dd if="/usr/lib/u-boot/u-boot-rockchip.bin" of="${disk}" seek=64
+
+sudo sync
