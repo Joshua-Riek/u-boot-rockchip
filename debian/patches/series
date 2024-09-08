@@ -1,0 +1,4 @@
+0001-include-turing-rk1-rk3588-define-boot-targets.patch
+0002-configs-turing-rk1-rk3588-Enumerate-PCI-buses-before.patch
+0003-arm-dts-rk3588-turing-rk1-fix-pcie3x4-hang.patch
+0004-board-rockchip-Add-the-Xunlong-Orange-Pi-5B.patch
