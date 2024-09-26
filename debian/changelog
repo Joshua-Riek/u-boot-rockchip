@@ -1,3 +1,10 @@
+u-boot-rockchip (2024.10~rc4-2) oracular; urgency=medium
+
+  * Remove RK356x blobs from include-binaries
+  * Update package description for the Turing RK1
+
+ -- Joshua Riek <jjriek@verizon.net>  Thu, 26 Sep 2024 14:22:12 -0400
+
 u-boot-rockchip (2024.10~rc4-1) oracular; urgency=medium
 
   * Inital release
