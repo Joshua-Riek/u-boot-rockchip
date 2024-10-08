@@ -1,3 +1,74 @@
+u-boot-rockchip (2024.10-1) oracular; urgency=medium
+
+  * Prepare v2024.10
+  * clk: renesas: rcar-gen3: Fix SSCG caching replacement with MDSEL/PE caching
+  * Update directories for new name of TF-A directories
+  * boot: android: Fix ramdisk loading for v2 header
+  * Update the ARM trusted firmware git URL
+  * Prepare v2024.10-rc6
+  * Merge tag 'u-boot-dfu-20240930' of https://source.denx.de/u-boot/custodians/u-boot-dfu
+  * usb: gadget: cdns3: Fix missing cache operations for non-zero Endpoints
+  * Merge tag 'u-boot-rockchip-20240930' of https://source.denx.de/u-boot/custodians/u-boot-rockchip
+  * regulator: rk8xx: Use buck variable consistently
+  * regulator: rk8xx: Fix buck get and set enabled state on RK806
+  * Merge tag 'u-boot-stm32-20240926' of https://source.denx.de/u-boot/custodians/u-boot-stm
+  * arm: imx: Enable always-on regulators using board specific workaround on DHCOM SoM
+  * ARM: stm32: Fix secure_waitbits() mask check
+  * ARM: stm32: Fix TAMP_SMCR BKP..PROT fields on STM32MP15xx
+  * ram: k3-ddrss: Handle error properly in lpddr4_start
+  * Merge tag 'doc-2024-10-rc6' of https://source.denx.de/u-boot/custodians/u-boot-efi
+  * doc: usage: cmd: ums: fix dependencies
+  * events: correct event_uninit() description
+  * boot: correct struct expo_action description
+  * sandbox: fix OS function descriptions
+  * efi_loader: correct efi_set_variable_int() description
+  * doc: include/getopt.h: remove comments confusing Sphinx
+  * cmd/efidebug: fix some function descriptions
+  * efi_loader: fix some function descriptions
+  * dts: beagleboneai64: Add boothph in chipid node
+  * Merge patch series "mux: mmio: support "reg-mux" compatible"
+  * phy: cadence: sierra: Don't spam console
+  * mux: mmio: Support "reg-mux" compatible
+  * Prepare v2024.10-rc5
+  * doc/develop/sending_patches.rst: Reword where our git tree is slightly
+  * dfu: fix Kconfig dependencies
+  * Merge tag 'doc-2024-10-rc4' of https://source.denx.de/u-boot/custodians/u-boot-efi
+  * binman: Update links for sending patches
+  * bootcount: Update to point to current documentation
+  * doc/mkeficapsule.1: Update homepage link
+  * doc: Update rST to not reference the old wiki
+  * doc/arch/mips.rst: Update toolchain list
+  * doc/arch/m68k.rst: Update toolchain comment
+  * doc/develop/sending_patches.rst: Clarify when to use which branch
+  * scripts/Makefile.lib: do not include CONFIG_DEVICE_TREE_INCLUDES in dtsi_include_list
+  * Merge tag 'u-boot-dfu-20240910' of https://source.denx.de/u-boot/custodians/u-boot-dfu
+  * Merge https://gitlab.denx.de/u-boot/custodians/u-boot-riscv
+  * Merge tag 'u-boot-imx-master-20240909' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx
+  * cmd: add rdcycle test to RISC-V exception command
+  * riscv: show registers in crash dumps by default
+  * riscv: allow to enable SHOW_REGS in main U-Boot only
+  * riscv: CONFIG_SPL_FRAMEPOINTER must depend on CONFIG_SPL
+  * riscv: define find_{first,next}_zero_bit in asm/bitops.h
+  * board: fix compatible property Milk-V Mars CM
+  * clk: sifive: avoid declaring static variables in includes
+  * clk: sifive: append missing \n to messages
+  * imx8mq-u-boot: Pass FIT offset to fix boot regression
+  * Merge branch 'master-spi-fixes' of https://source.denx.de/u-boot/custodians/u-boot-sh
+  * ARM: dts: renesas: Minimize R8A779G0 V4H RPC SPI DT node
+  * mtd: spi: renesas: Add R-Car Gen4 DT compatible
+  * mtd: spi: renesas: Configure RPC PHY timing registers
+  * mtd: spi: renesas: Configure DRDRENR register
+  * mtd: spi: renesas: Write DRDMCR register once
+  * mtd: spi: renesas: Write DREAR register once
+  * mtd: rpc: renesas: Add R-Car Gen4 DT compatible
+  * android_ab: Fixes: Fix backup offset calculation
+  * Merge https://gitlab.denx.de/u-boot/custodians/u-boot-marvell
+  * arm: mvebu: turris_omnia: Switch DDR speed to 1333H when reset 9 is selected
+  * arm: mvebu: turris_omnia: Use the i2c_eeprom misc driver for EEPROM reading in U-Boot proper
+  * arm: mvebu: turris_omnia: Rename variable holding EEPROM udevice
+
+ -- Joshua Riek <jjriek@verizon.net>  Tue, 08 Oct 2024 11:14:48 -0400
+
 u-boot-rockchip (2024.10~rc4-2) oracular; urgency=medium
 
   * Remove RK356x blobs from include-binaries
