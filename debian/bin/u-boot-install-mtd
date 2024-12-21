@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -eE 
+
+disk="/dev/mtd0"
+if [ ! -c "${disk}" ]; then
+    echo "$(basename "$0"): SPI flash '${disk}' not found"
+    exit 1
+fi
+echo "$(basename "$0"): writing U-Boot to the SPI flash"
+
+extra_opts_flashcp=("--verbose")
+if flashcp -h | grep -q -e '--partition'; then
+    extra_opts_flashcp+=("--partition")
+fi
+sudo flashcp "${extra_opts_flashcp[@]}" "/usr/lib/u-boot/u-boot-rockchip-spi.bin" "${disk}"
+
+sudo sync

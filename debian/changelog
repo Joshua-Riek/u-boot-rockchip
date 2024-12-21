@@ -1,0 +1,1931 @@
+u-boot-rockchip (2025.01~rc4-1) plucky; urgency=medium
+
+  * Prepare v2025.01-rc4
+  * Merge branch 'master' of https://source.denx.de/u-boot/custodians/u-boot-sh
+  * arm64: renesas: Disable AVB1 and AVB2 on R8A779G0 V4H White Hawk board
+  * pinctrl: rzg2l: Drop unnecessary scope
+  * pinctrl: rzg2l: Support Ethernet TXC output enable
+  * pinctrl: rzg2l: Support 2.5V PVDD for Ethernet interfaces
+  * net: ravb: Simplify max-speed handling in ravb_of_to_plat
+  * clk: rzg2l: Ignore enable for core clocks
+  * mbedtls: remove MBEDTLS_HAVE_TIME
+  * arm: qemu: fix update_info declaration
+  * net: disable MBEDTLS in SPL
+  * rtc: CONFIGS_RTC_PL031 must depend on CONFIGS_DM_RTC
+  * lmb: prohibit allocations above ram_top even from same bank
+  * configs: Resync with savedefconfig
+  * Merge branch 'master' of https://source.denx.de/u-boot/custodians/u-boot-pmic
+  * Merge tag 'efi-master-05122024' of https://source.denx.de/u-boot/custodians/u-boot-tpm
+  * lmb: Fix the allocation of overlapping memory areas with !LMB_NONE
+  * efi_loader: Check for a valid fw_name before auto generating GUIDs
+  * power: regulator: replace dev_dbg() by dev_err() in regulator_post_bind()
+  * power: regulator: replace some debug() by dev_dbg()
+  * Merge branch 'master' of https://gitlab.denx.de/u-boot/custodians/u-boot-samsung
+  * configs: e850-96: Disable PSCI reset
+  * common: relocate fdt_blob in global_data for FDTSRC_EMBED case
+  * Revert "global_data: Drop spl_handoff"
+  * binman: Avoid skipping binman_init()
+  * powerpc/t2080qds: remove spurious x permission from README file
+  * arm: dts: socfpga: remove spurious execute permission from dt files
+  * Makefile: avoid non-standard sed expressions
+  * net: lwip: wget: fix legacy syntax
+  * Revert "efi_memory: do not add U-Boot memory to the memory map"
+  * Merge tag 'u-boot-imx-master-20241130' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx
+  * test/cmd/wget.c: move net_test_wget() to the cmd test suite
+  * Revert "arm64: dts: ti: k3-j7200: Fix OSPI boot"
+  * ARM: dts: imx: Enable PCIe and NVMe on Data Modul i.MX8M Mini eDM SBC
+  * ARM: imx: Replace YModem with SDP on Data Modul i.MX8M Mini eDM SBC SPL
+  * ARM: imx: Deduplicate Data Modul i.MX8M eDM SBC defconfigs
+  * ARM: imx: Perform plain boot in altbootcmd on Data Modul i.MX8M Mini/Plus eDM SBC
+  * ARM: dts: imx: Pick safe DRAM size on failure on Data Modul i.MX8M Mini/Plus eDM SBC
+  * ARM: dts: imx: Make DRAM coding GPIOs available before relocation on Data Modul i.MX8M Mini/Plus eDM SBC
+  * Merge https://source.denx.de/u-boot/custodians/u-boot-riscv
+  * Merge branch 'u-boot-nand-20241126' of https://source.denx.de/u-boot/custodians/u-boot-nand-flash
+  * configs: enable CONFIG_PCI_REGION_MULTI_ENTRY=y in sifive_unmatched_defconfig
+  * configs: visionfive2: re-enable SPL_SYS_MMCSD_RAW_MODE
+  * configs: SiFive Unmatched: enable 'env erase' sub-command
+  * spl: increase SPL_SYS_MALLOC_SIZE when using BIOSEMU on RISC-V
+  * mtd: rawnand: brcmnand: update log level messages
+  * mtd: rawnand: brcmnand: Default bcmbca parameter_page_big_endian to zero
+  * arm: dts: Use upstream dts
+  * mtd: nand: brcmnand: remove device specific nand driver files
+  * configs: Resync with savedefconfig
+  * Merge tag 'u-boot-dfu-20241126' of https://source.denx.de/u-boot/custodians/u-boot-dfu
+  * Merge branch 'master' of https://source.denx.de/u-boot/custodians/u-boot-marvell
+  * arm: mvebu: Add Allied Telesis x250 board
+  * arm: mvebu: x530: Enable IPV6 support
+  * arm: mvebu: x530: Don't build mkeficapsule
+  * arm: mvebu: x530: Remove dead comments
+  * arm: mvebu: x240: Enable IPV6 support
+  * arm: mvebu: x240: Don't build mkeficapsule
+  * arm: mvebu: x240: Switch to standard boot
+  * arm: mvebu: x240: Use default baudrate table
+  * arm: kirkwood: Enable bootstd for Sheevaplug board
+  * arm: mvebu: Disable JFFS2 support for Kirkwood and Armada XP boards
+  * usb: ci_udc: don't use "advance" feature when setting address
+  * Prepare v2025.01-rc3
+  * Merge branch 'master-asix' of https://source.denx.de/u-boot/custodians/u-boot-usb
+  * spi: Fix missed rename from SPI_ADVANCE to SPI_STACKED_PARALLEL
+  * Merge https://source.denx.de/u-boot/custodians/u-boot-usb
+  * ast2600: spl: Use readl for reading mmio
+  * mtd: Drop superfluous const qualifier
+  * eth: asix88179: packet drop when receiving large fragmented packets
+  * eth: asix88179: Fix ASIX AX88179A PHY hang
+  * usb: onboard-hub: Bail out if peer hub is already probed
+  * usb: onboard-hub: Add i2c initialization for usb5744 hub
+  * usb: onboard-hub: add support for Microchip USB5744
+  * usb: onboard-hub: Fix the return values of regulator APIs
+  * usb: onboard-hub: Add reset-gpio support
+  * Merge patch series "Fix device removal order for Apple dart iommu"
+  * dm: Add dm_remove_devices_active() for ordered device removal
+  * iommu: apple: Mark device with DM_FLAG_VITAL
+  * Merge tag 'efi-2025-01-rc3' of https://source.denx.de/u-boot/custodians/u-boot-efi
+  * lmb: Correctly unmap and free memory on errors
+  * Merge tag 'u-boot-imx-master-20241123' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx
+  * configs: JH7110: enable EFI_LOADER_BOUNCE_BUFFER
+  * efi_loader: allow EFI_LOADER_BOUNCE_BUFFER on all architectures
+  * doc: cmd: wget: document lwIP syntax
+  * doc: remove README.TPL
+  * doc: move README.kconfig to HTML documentation
+  * efi_loader: simplify efi_tcg2_hash_log_extend_event()
+  * arm64: dts: imx8mn: Include 32kHz oscillator clock in SPL DTs
+  * Merge branch '2024-11-22-assorted-fixes'
+  * cmd: improve description of the cdp command
+  * test: unit test for hextoull()
+  * net: lwip: dhcp: support arguments for TFTP file download
+  * net: lwip: provide entropy to MBed TLS in one go
+  * net: lwip: wget: update help string
+  * net: lwip: fix get_udev_ipv4_info()
+  * arm64: dts: ti: k3-j7200: Fix OSPI boot
+  * board: armltd: Make myself maintainer for total compute
+  * Revert "test: Update time tests to use unit-test asserts"
+  * net: lwip: fix dhcp_loop()
+  * test: boot: Set DM|SCAN_FDT flags for bootmeth_{cros,android}
+  * Merge branch 'qcom-main' of https://source.denx.de/u-boot/custodians/u-boot-snapdragon
+  * treewide: remove Qualcomm dt-binding headers that are available upstream
+  * iommu: qcom-smmu: handle running in el2
+  * iommu: qcom-smmu: allow SID 0
+  * qcom_defconfig: enable capsule update support
+  * mach-snapdragon: implement capsule update support
+  * disk: expose partition type flags
+  * dfu: add scsi backend
+  * phy: qcom: Add SM8150 to QMP UFS PHY driver
+  * phy: qcom: ufs: add sc7280
+  * qcom_defconfig: enable UFS Qualcomm controller and PHY drivers
+  * dt-bindings: remove phy/phy-qcom-qmp.h in favor of dts/upstream
+  * phy: qcom: ufs: drop unused ufsphy_v2_regs_layout
+  * gpio: qcom_pmic: add again the quirk to skip GPIO configuration on PM8550
+  * mmc: msm_sdhci: enable vqmmc at probe if available
+  * mach-snapdragon: configure logging
+  * ARM: mach-snapdragon: configure a larger default SYS_MALLOC_LEN for fastboot
+  * qcom_defconfig: enable PINCONF
+  * Merge tag 'xilinx-for-v2025.01-rc3-v2' of https://source.denx.de/u-boot/custodians/u-boot-microblaze
+  * xilinx: Introduce XILINX_MINI configuration
+  * microblaze: Disable JFFS2 support
+  * arm64: zynqmp: Set default RTC device at start
+  * arm64: versal: Enable soft reset support for xspi flashes
+  * arm64: versal: Enable defconfig for Micron octal flashes
+  * spi: cadence_qspi: Fix OSPI boot issue
+  * fastboot: properly handle unknown partition type
+  * test: cmd/hash: check return value of ut_check_console_line
+  * Kconfig: describe NET, NO_NET, LWIP_DEBUG and LWIP_ASSERT
+  * net: lwip/wget: correct SERVER_NAME_SIZE
+  * Merge patch series "Fix boot failure due to misaligned DMA buffer"
+  * fs: Use ARCH_DMA_MINALIGN as default alignment for fs_read_alloc()
+  * boot: extlinux: Fix unaligned buffer for reading data from file system
+  * Merge tag 'tpm-master-16112024' of https://source.denx.de/u-boot/custodians/u-boot-tpm
+  * MAINTAINERS: add lib/tpm* to TPM DRIVERS
+  * tpm: use memmove() for overlapping buffers
+  * km: disable CMD_JFFS2 for all PPC boards
+  * fs: btrfs: hide duplicate 'Cannot lookup file' error on 'load'
+  * test/py: spi: Rephrase the warning/error messages
+  * Merge tag 'u-boot-imx-master-20241115' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx
+  * imx: Fix critical thermal threshold
+  * tools: imx8image: Add missing break for CMD_DCD_SKIP
+  * drivers: bootcount: Add ZynqMP specific bootcount support
+  * boot/image-board.c: boot_get_fpga(): pass compatible flag to fpga_load()
+  * arm64: versal: Enable capsule update (SD)
+  * arm64: versal: Do not define do_reset() if sysreset is enabled
+  * arm64: zynqmp: Fix r5 mode for cpu release command
+  * arm64: xilinx: Rename SPI_ADVANCE to SPI_STACKED_PARALLEL
+  * xilinx: use get_mem_top() to compute ram_top
+  * common: memtop: add logic to detect ram_top
+  * .gitignore: add test overlay .S and u_boot_logo files
+  * lmb.c: add missing comma in lmb_dump_region()
+  * test: use %zd for size_t in mbr_test_run()
+  * test: print_printf() must check availability of %ls
+  * test: cmd/mbr: pass correct buffer size to init_write_buffers
+  * upl: fix parsing of DT property
+  * cmd: upl: initialize unit test state
+  * xyz-modem: Add missing fallthrough annotation
+  * lmb: do not panic in lmb_print_region_flags
+  * lib: rsa: Set conventional salt length RSA-PSS parameter
+  * lwip: fix code style issues
+  * Makefile: fix empty MK_ARCH when using ccache
+  * Merge patch series "examples: fix building on arm64"
+  * examples: make glue and demo code compatible with 64-bit
+  * examples: adjust LOAD_ADDR on arm64
+  * examples: fix building on arm64
+  * Merge patch series "cmd: hash: correct parameter count check"
+  * Merge patch series "Apply SoM overlays on phyCORE-AM6xx SoMs"
+  * test: unit test for hash command
+  * cmd: hash: correct parameter count check
+  * board: phytec: common: k3: Apply SoM-specific overlays to OS device tree
+  * arm: dts: k3-am642-phycore-som-binman: Add SoM overlays
+  * arm: dts: k3-am625-phycore-som-binman: Add SoM overlays
+  * configs: phycore_am64x_a53_defconfig: Enable PHYTEC_SOM_DETECTION
+  * configs: phycore_am64x_a53_defconfig: Add SoM overlays to OF_OVERLAY_LIST
+  * configs: phycore_am62x_a53_defconfig: Add SoM overlays to OF_OVERLAY_LIST
+  * Merge patch series "labgrid: Provide an integration with Labgrid"
+  * Merge patch series "test: Tidy up the test/ directory"
+  * sandbox: Add a build without CMDLINE
+  * CI: Allow running tests on sjg lab
+  * test: Correct regex string in test_spi
+  * test: Support testing with two board-builds
+  * test: Add a section for closing the connection
+  * test: Try to shut down the lab console gracefully
+  * test: Avoid double echo when starting up
+  * test: Improve handling of sending commands
+  * test: Introduce lab mode
+  * test: Introduce the concept of a role
+  * test: Allow connecting to a running board
+  * test: Release board after tests complete
+  * test: Allow signaling that U-Boot is ready
+  * test: Quote test names
+  * test: Correct display of failing test
+  * test: Update time tests to use unit-test asserts
+  * test: Move time tests into the lib suite
+  * test: Move time_ut test into lib
+  * test: Move unicode tests into the lib suite
+  * test: Move unicode_ut test into lib
+  * str: test: Move into the lib suite
+  * test: Move str_ut test into lib
+  * test: Move print_ut into the common suite
+  * test: Move print_ut test into common
+  * bootm: test: Move test into boot
+  * test: Update command test to use unit-test functions
+  * command: test: Move into the cmd suite
+  * command_ut: test: Move test into lib
+  * compression: test: Move into the lib suite
+  * compression: test: Move test into lib
+  * test: Drop test-trace.sh and common.sh
+  * bloblist: test: Drop global_data declarations
+  * bloblist: test: Move test into common
+  * fs: ext4: correct error handling
+  * Makefile: Fake external blob with BINMAN_ALLOW_MISSING=1
+  * board: qemu-arm: select CONFIG_HAS_CUSTOM_SYS_INIT_SP_ADDR
+  * test: run longjmp() test only on supported architectures
+  * lib: vsprintf: fix API build
+  * Merge patch series "lib: uuid: fix uuid_str_to_le_bin() on 32-bit"
+  * configs: enable UNIT_TEST on qemu_arm_defconfig
+  * lib: uuid: fix uuid_str_to_bin() on 32-bit
+  * lib: uuid: fix uuid_str_to_le_bin() on 32-bit
+  * lib: provide function hextoull()
+  * Merge patch series "Enable https for wget"
+  * doc: uefi: Describe UEFI HTTPs boot
+  * configs: Enable https for wget on qemu arm64
+  * net: lwip: Enable https:// support for wget
+  * net: lwip: Add Support Server Name Indication support
+  * net: lwip: Update lwIP for mbedTLS > 3.0 support and enable https
+  * mbedtls: Enable TLS 1.2 support
+  * net: wget: drop Content-Length processing
+  * configs: Resync with savedefconfig
+  * Merge tag 'u-boot-stm32-20241112' of https://source.denx.de/u-boot/custodians/u-boot-stm
+  * ARM: stm32: Add optional manufacturing environment to DH STM32MP15xx DHSOM
+  * ARM: stm32: Deduplicate DH STM32MP1xx DHSOM defconfigs
+  * ARM: stm32: Deduplicate DH STM32MP15xx DHSOM defconfigs
+  * ARM: dts: stm32: Sort DH STM32 DHCOM DTSI
+  * ARM: dts: stm32: Drop duplicate pinmux on DH STM32 DHCOM
+  * ARM: dts: stm32: Drop remnants of upstream DT switch on DH STM32 DHSOM
+  * arm64: zynqmp: Fix pwm-fan polarity
+  * arm64: zynqmp: Configure SoC RTC on SOM
+  * Prepare v2025.01-rc2
+  * Merge patch series "Fix IOVA allocation in Apple dart iommu after global LMB mem map changes"
+  * iommu: apple: Manage IOVA separately from global LMB mem map
+  * lmb: Add basic io_lmb functionality
+  * lmb: cosmetic: reorder functions and global LMB variable
+  * lmb: Do not use global LMB variable in _lmb_free()
+  * Merge tag 'u-boot-rockchip-20241111' of https://source.denx.de/u-boot/custodians/u-boot-rockchip
+  * rockchip: rk3399: move sysreset-gpio logic to TPL
+  * rockchip: tpl: allow to call board/SoC-specific code before DRAM init
+  * rockchip: rk3399: merge CRU check within rk3399_force_power_on_reset
+  * pinctrl: rockchip: allow to build for TPL
+  * rockchip: rk35xx-generic: Disable late boardinfo
+  * board: rockchip: Add FriendlyElec NanoPi R2S Plus
+  * arm64: dts: rockchip: Add DTS for FriendlyARM NanoPi R2S Plus
+  * board: rockchip: Add support for rk3588 GenBook
+  * rockchip: Make it possible to define per board boot_targets
+  * arm64: dts: rockchip: Add support for rk3588 based Cool Pi CM5 GenBook
+  * board: rockchip: add support for Qnap TS433 devices
+  * Merge branch 'master' of https://source.denx.de/u-boot/custodians/u-boot-sh
+  * mtd: spi-nor: Fix integer overflow in stacked memories support
+  * board: hoperun: Switch to use complete DTS files from upstream DTS
+  * configs: hihope_rzg2: Set correct MMC device for U-Boot env
+  * arm: renesas: Fix RZ/G2L GICR base address
+  * dt-bindings: Drop unused RZ/G2L devicetree bindings
+  * ARM: dts: Drop unused RZ/G2L devicetrees
+  * board: rzg2l: Update MAINTAINERS file to match dts/upstream paths
+  * Merge tag 'u-boot-imx-master-20241105' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx
+  * Merge tag 'efi-2025-01-rc2-2' of https://source.denx.de/u-boot/custodians/u-boot-efi
+  * arm: mach-imx: imx8m: re-use SNVS init routine
+  * arm: mach-imx: move snvs module
+  * ARM: dts: imx: Switch to using upstream DT on DH i.MX6 DHCOM
+  * ARM: dts: imx6dl: Add support for i.MX6DL DHCOM SoM on PDK2 carrier board
+  * tools: imx8image: add possibility to skip dcd
+  * imx9: Improve boot mode autodetection
+  * imx: hab: Make imx_hab_is_enabled dependent on FIELD_RETURN
+  * imx: hab: rename imx_sec_config_fuse_t to imx_fuse
+  * test: efi: boot: Add a test for the efi bootmeth
+  * test: efi: boot: Set up an image suitable for EFI testing
+  * sandbox: virtio: Disable the sandbox virtio blk device
+  * efi_loader: Drop sandbox PXE architecture
+  * sandbox: Report host default-filename in native mode
+  * efi_loader: Allow reporting the host defaults
+  * efi_loader: Move get_efi_pxe_arch() to efi_helper
+  * efi: Move default filename to a function
+  * sandbox: Add a -N flag to control on-host behaviour
+  * efi_loader: Add a test app
+  * doc: qemu-riscv: describe CONFIG_DEBUG_SBI_CONSOLE
+  * doc: conf.py: correct title and author of generated pdf
+  * efi_loader: Change efi_dp_from_mem() to use size
+  * tools: mkeficapsule: use %zd to print ssize_t.
+  * doc: remove vile language
+  * lmb: Drop extra 16KB of stack space
+  * arm64: dts: rockchip: add product-data eeproms to QNAP TS433
+  * arm64: dts: rockchip: actually enable pmu-io-domains on qnap-ts433
+  * arm64: dts: rockchip: Simplify network PHY connection on qnap-ts433
+  * arm64: dts: rockchip: add 2 pmu_io_domain supplies for Qnap-TS433
+  * arm64: dts: rockchip: enable gpu on Qnap-TS433
+  * arm64: dts: rockchip: add missing pmic information on Qnap-TS433
+  * arm64: dts: rockchip: define cpu-supply on the Qnap-TS433
+  * arm64: dts: rockchip: add gpio-keys to Qnap-TS433
+  * arm64: dts: rockchip: enable the tsadc on the Qnap-TS433
+  * arm64: dts: rockchip: add hdd leds to Qnap-TS433
+  * arm64: dts: rockchip: add board-aliases for Qnap-TS433
+  * arm64: dts: rockchip: enable sata1+2 on Qnap-TS433
+  * arm64: dts: rockchip: add stdout path on Qnap-TS433
+  * arm64: dts: rockchip: enable usb ports on Qnap-TS433
+  * arm64: dts: rockchip: enable uart0 on Qnap-TS433
+  * arm64: dts: rockchip: enable second PCIe controller on the Qnap-TS433
+  * arm64: dts: rockchip: add PCIe supply regulator to Qnap-TS433
+  * Merge https://source.denx.de/u-boot/custodians/u-boot-riscv
+  * riscv: Introduce configuration for 64bit version Microblaze V
+  * xilinx: mbv: Align smode_defconfig with upstream QEMU
+  * xilinx: mbv: Place DTB by default to DDR location
+  * configs: visionfive2: re-enable SPL_SYS_MMCSD_RAW_MODE
+  * driver: sifive ccache: enable TRUNKCLOCKGATE and REGIONCLOCKGATE
+  * arm: dts: e850-96: Remove TRNG node from appended dts
+  * pinctrl: exynos: fix type of count integer
+  * bios_emulator: fix first argument of pci_{read,write}_config_* function calls
+  * drivers/video/vesa: use MTRRs only on x86
+  * bios_emulator: define the comment symbol for RISC-V assembler too
+  * bootmenu: add reprint check
+  * menu: add support to check if menu needs to be reprinted
+  * menu: fix the logic checking whether ESC key is pressed
+  * Merge patch series "U-boot: arm: Refine the booting on Total Compute"
+  * arm: total_compute: Update memory mapping info
+  * arm: total_compute: Support Debian boot
+  * arm: total_compute: Dynamically detect block device
+  * arm: total_compute: Minor improvement for boot arguments
+  * arm: total_compute: move the boot command to an env file
+  * arm: total_compute: Remove unused bootm_size
+  * arm: total_compute: Initialize environment variables
+  * arm: total_compute: depend on TF-A for hardware description
+  * Merge patch series "Fixes to allow 'ut bootm' to pass when run interactively"
+  * test: bootm: Ensure GD_FLG_SILENT is reset
+  * test: bootm: bootm_process_cmdline_env takes flags
+  * usb: Fix test dependency on ext4write command
+  * usb: Fix test failure with multiple partitions
+  * Merge tag 'dm-pull-2nov24' of https://source.denx.de/u-boot/custodians/u-boot-dm
+  * sandbox: Fix comment for nomap_sysmem() function
+  * sandbox: Add a way to show the sandbox memory-mapping
+  * doc: sandbox: Add docs for the sb command
+  * sandbox: Convert sb command to use new macro
+  * bloblist: test: Mark tests with UTF_BLOBLIST
+  * test: Allow saving and restoring the bloblist
+  * log: Add a new category for tests
+  * x86: coreboot: Allow building an expo for editing CMOS config
+  * x86: coreboot: Add a command to check and update CMOS RAM
+  * x86: coreboot: Enable support for the configuration editor
+  * x86: coreboot: Show the option table
+  * x86: coreboot: Add a test for cbsysinfo command
+  * bootstage: Do not sort records
+  * bootstd: Avoid showing an invalid buffer address
+  * bootstd: cros: Correct the x86-setup address
+  * test: boot: Update bootflow_iter() for console checking
+  * test: Drop the duplicate line in setup_bootmenu_image()
+  * test: Expand implementation of ut_list_has_dm_tests()
+  * test: boot: Use a consistent name for the script bootmeth
+  * dm: core: Add a function to see if a device exists
+  * alist: Add maintainer
+  * alist: Add a way to efficiently filter an alist
+  * alist: Add a function to empty the list
+  * alist: Add for-loop helpers
+  * alist: Add a way to get the next element
+  * alist: Expand the comment for alist_get()
+  * alist: Add a comment for alist_init_struct()
+  * alist: Mention the error condition in alist_add_placeholder()
+  * .readthedocs.yml: update Python version and Ubuntu release
+  * Merge branch 'master' of https://source.denx.de/u-boot/custodians/u-boot-sh
+  * ARM: renesas: Deduplicate common Renesas defconfig
+  * ARM: renesas: Deduplicate Renesas R-Car 64bit defconfigs
+  * ARM: renesas: Deduplicate Renesas R-Car Gen4 defconfigs
+  * ARM: renesas: Deduplicate Renesas R-Car Gen3 defconfigs
+  * ARM: renesas: Deduplicate Renesas R-Car Gen2 defconfigs
+  * clk: renesas: Fix missing unbind on driver look up failure
+  * test: boot: Use a consistent name for the script bootmeth
+  * dm: core: Add a function to see if a device exists
+  * alist: Add maintainer
+  * alist: Add a way to efficiently filter an alist
+  * alist: Add a function to empty the list
+  * alist: Add for-loop helpers
+  * alist: Add a way to get the next element
+  * alist: Expand the comment for alist_get()
+  * alist: Add a comment for alist_init_struct()
+  * alist: Mention the error condition in alist_add_placeholder()
+  * Merge patch series "fs: ext4: implement opendir, readdir, closedir"
+  * fs: ext4: use fs_ls_generic
+  * efi_loader: fix GetInfo and SetInfo
+  * fs: ext4: implement opendir, readdir, closedir
+  * fs: ext4: free directory node in ext4fs_exists()
+  * fs: ext4: simplify ext4fs_iterate_dir()
+  * test/cmd/mem_copy.c: Use CONFIG_SYS_LOAD_ADDR for base
+  * test/py: spi: prevent overwriting relocation memory
+  * lmb: remove __maybe_unused from lmb_map_update_notify
+  * scsi: fix disk capacity too small by one sector
+  * acpi_table: Fix coverity defect in acpi_write_spcr
+  * mtd: spi-nor: Guard SPI_STACKED_PARALLEL with DM_SPI check
+  * Merge patch series "mtd: spi-nor: Remove recently added nor->addr_width == 3 test"
+  * mtd: spi-nor: Always build SPI_STACKED_PARALLEL code
+  * mtd: spi-nor: Rename SPI_ADVANCE to SPI_STACKED_PARALLEL
+  * mtd: spi-nor: Rewrite rem_bank_len calculation
+  * mtd: spi-nor: Fix multiple coding style issues
+  * mtd: spi-nor: Remove recently added SST special case
+  * mtd: spi-nor: Remove recently added write_disable() call
+  * mtd: spi-nor: Remove recently added set_4byte() call
+  * mtd: spi-nor: Remove recently added spi_nor_wait_till_ready() call
+  * mtd: spi-nor: Remove recently added nor->addr_width == 3 test
+  * Merge tag 'efi-2025-01-rc2' of https://source.denx.de/u-boot/custodians/u-boot-efi
+  * lib: efi_loader: Fix efi_dp_from_mem() calls
+  * efi_loader: Make tcg2_uninit() static
+  * efi_loader: Remove unused diskid
+  * efi_loader: Mark static functions in smbiosdump
+  * efi_loader: Mark static function in dumpdtb
+  * efi_loader: Mark efi_bootmgr_release_uridp as static
+  * cmd/eficonfig: capitalize 'enter description'
+  * fs: ext4: document struct ext2_inode
+  * efi_loader: Simplify efi_free_pages()
+  * doc: include file-system API into HTML docs
+  * fs: improve API documentation
+  * doc: update Python requirements
+  * doc: do not include K3 boards twice in TOC
+  * doc: semihosting can only be once in TOC
+  * boot/Kconfig: correct fdt_fixup_memory_banks name typo
+  * scripts/dtc/pylibfdt/libfdt.i_shipped: Use SWIG_AppendOutput
+  * lmb: Correctly unmap memory after notifications
+  * arch: arm: dts: k3-j784s4-r5: Introduce k3-j784s4-r5.dtsi
+  * MAINTAINERS: add tambarus as reviewer for SPI NOR
+  * efi_loader: fix CONFIG_EFI_HTTP dependencies
+  * efi_selftest: make HII test data static
+  * efi_selftest: fix typo 'got languages' in HII test
+  * Merge tag 'u-boot-imx-master-20241029' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx
+  * Merge patch series "memory: ti-aemif: Add DM support"
+  * memory: ti-aemif-cs: Compute timing configuration from DT parsing
+  * memory: ti-aemif: Add DM support
+  * memory: ti-aemif: Wrap the CS configuration into a function
+  * memory: ti-aemif: Add ARCH_DAVINCI to architectures that uses TI_AEMIF
+  * memory: ti-aemif: Make AEMIF driver architecture agnostic
+  * memory: ti-aemif: Correct macro to ensure avoiding precedence issues
+  * Merge patch series "Support Aspeed SGPIO controller"
+  * test/hush: Add CONFIG_CONSOLE_RECORD where required
+  * test/cmd: Make some "ut dm" tests only available on sandbox
+  * Kconfig: Remove TARGET_TRICORDER references
+  * disk: Mark static functions in part_efi.c
+  * cmd: fat: Make do_fat_size static
+  * lmb: Remove lmb_alloc_flags()
+  * lmb: Simplify lmb_should_notify usage
+  * lmb: Fix lmb_add_region_flags() return codes and testing
+  * board_r: Remove duplicate headers
+  * cpu_func.h: provide noncached_set_region prototype to fix build
+  * CONFIG_SYS_NONCACHED_MEMORY: Move prototypes to include/cpu_func.h for consistency
+  * net: dwc_eth_qos: Remove obsolete imx8 includes
+  * net: dwc_eth_qos_imx: Add platform specific reset for i.MX93
+  * net: dwc_eth_qos: Add support for platform specific reset
+  * board: emcraft: Add support for Emcraft Systems NavQ+
+  * arm64: imx: Fix 0Xnn to 0xnn
+  * imx: hab: fix size of IVT+CSF blob tacked on to u-boot.itb
+  * ARM: dts: ast2600: Add SGPIO to device tree
+  * ARM: dts: ast2500: Add SGPIO to device tree
+  * gpio: Add Aspeed SGPIO driver
+  * fdt: lmb: add reserved regions as no-overwrite
+  * lmb: add a check to prevent memory overrun
+  * cmd: simplify network definitions in Makefile
+  * dm: core: downgrade some dm_warn messages to log_debug()
+  * Merge https://source.denx.de/u-boot/custodians/u-boot-sh
+  * Merge https://source.denx.de/u-boot/custodians/u-boot-riscv
+  * Merge patch series "boards: siemens: iot2050: SM variant, sysinfo support, fixes & cleanups"
+  * board: iot2050: Support new IOT2050-SM variant
+  * riscv: dts: mpfs: migrate to OF_UPSTREAM
+  * board: mpfs_icicle: imply new clk driver dependencies
+  * clk: microchip: mpfs: support new syscon based devicetree configuration
+  * riscv: resume needs to be a global
+  * riscv: mbv: Align DT with QEMU
+  * board: siemens: iot2050: Migrate to OF_UPSTREAM
+  * arm64: dts: ti: iot2050: Add overlays for M.2 used by firmware
+  * arm64: dts: ti: iot2050: Disable lock-step for all iot2050 boards
+  * board: siemens: iot2050: Stop using special spl DT sources
+  * board: siemens: iot2050: Generalize the fdt fixup
+  * board: siemens: iot2050: Pass DDR size from FSBL
+  * board: siemens: iot2050: Control pcie power for all variants
+  * board: siemens: iot2050: Fix coding style
+  * board: siemens: iot2050: Fix mistake in list of writable env vars
+  * Revert "acpi_table: Fix coverity defect in acpi_write_spcr"
+  * Prepare v2025.01-rc1
+  * acpi_table: Fix coverity defect in acpi_write_spcr
+  * mmc: renesas-sdhi: Add compatible string for rzg2l-sdhi
+  * ARM: renesas: Add top level board/renesas/ MAINTAINERS file
+  * ARM: renesas: Drop old unused power DT headers
+  * ARM: renesas: Drop old unused clock DT headers
+  * Merge https://source.denx.de/u-boot/custodians/u-boot-riscv
+  * riscv: cache: Add CBO instructions
+  * riscv: Add support for defining instructions
+  * riscv64: dts: starfive: Mars ethernet0 phy delay values sync with upstream Linux
+  * riscv64: dts: starfive: Star64 ethernet0 phy delay values sync with upstream Linux
+  * configs: visionfive2: enable CONFIG_CMD_ERASEENV
+  * riscv: add missing linefeed in error message
+  * riscv: qemu: Explicitly advertise RVVM support
+  * riscv: qemu: Enable EFI framebuffer
+  * riscv: qemu: Enable booting from NVMe
+  * configs: th1520_lpi4a: Enable CMD_GPIO, DM_GPIO and DWAPB_GPIO driver
+  * gpio: dw: Add ngpios DT-property support
+  * cmd: sbi: Add FWFT, MPXY extensions
+  * x86: Missed removal of CMD_BOOTEFI_HELLO_COMPILE
+  * test: efi_loader: Fix dependency for http test
+  * Merge patch series "Implement ACPI on aarch64"
+  * CI: Enable qemu_sbsa
+  * configs: Add RPI4 ACPI defconfig
+  * bloblist: Fix use of uninitialized variable
+  * arm: mach-bcm283x: Enable ARMV8_MULTIENTRY
+  * arm: mach-bcm283x: Add ARMV8_MULTIENTRY support
+  * arm: Implement read_mpidr on armv7
+  * armv8: cpu: Enable ACPI parking protocol
+  * arm: cpu: Add ACPI parking protocol support
+  * board: raspberrypi: Add ASL files from tianocore
+  * arm: bcm283x: Generate ACPI tables
+  * arm: mach-bcm283x: Bring in some header files from tianocore
+  * arm: mach-bcm283x: Map the ARM local MMIO as well
+  * board: emulation: Add QEMU sbsa support
+  * common: Enable BLOBLIST_TABLES on arm
+  * drivers/arm: Implement acpi_fill_madt
+  * drivers: misc: irq-uclass: Update irq_get_by_index
+  * arm: lib: Add GICV2 driver
+  * arm: gic-v3-its: Implement of_xlate
+  * arm: gic-v3-its: Rename objects
+  * drivers/cpu: Add generic armv8 cpu driver
+  * drivers: ata: Rename ahci_mvebu
+  * drivers: usb: Add generic XHCI
+  * acpi: Add processor device
+  * acpi: Allocate and write ACPI tables
+  * acpi_table: Support platforms with unusable RSDT
+  * acpi: Move function prototype
+  * acpi: acpi_table: Add IORT support
+  * acpi: Add ACPITAB for PPTT and GTDT
+  * acpi: acpi_table: Bump revisions
+  * acpi: Add fill_madt to acpi_ops
+  * arm: acpi: Add generic ACPI methods
+  * acpi: Add define for GTDT
+  * serial: serial_pl01x: Implement .getinfo() for PL01
+  * acpi: Fix typo
+  * acpi: x86: Move MADT to common code
+  * acpi: x86: Write FADT in common code
+  * acpi: x86: Move SPCR and DBG2 into common code
+  * Merge a patch series to improve dc2114x support
+  * Merge patch series "net: ksz9477: add support for KSZ GbE switches using SPI bus"
+  * Merge patch series "Add driver for Motorcomm YT8821 2.5G ethernet phy"
+  * net: recv(): return -EAGAIN instead of 0 when no cleanup is expected
+  * net: ksz9477: add support for KSZ GbE switches using SPI bus
+  * net: ksz9477: prepare ksz9477 without I2C support
+  * net: ksz9477: rename ksz_i2c_probe() to ksz_probe()
+  * net: ksz9477: store ksz bus operations functions
+  * net: ksz9477: set i2c bus offset length only when needed
+  * net: ksz9477: rename udevice_id tab to ksz_ids
+  * net: ksz9477: add KSZ9896 switch support
+  * net: ksz9477: remove dev_set_parent_priv() call
+  * net: ksz9477: move struct ksz_dsa_priv *priv declaration
+  * net: phy: motorcomm: Add driver for Motorcomm YT8821 2.5G ethernet phy
+  * net: phy: motorcomm: Optimize phy speed mask to be compatible to YT8821
+  * net: dc2114x: remove the pass all multicast flag in operation mode settings
+  * net: dc2114x: allow users to decide how to tx packets according to IP core
+  * net: dc2114x: allow users to decide whether to detect the tx No Carrier errors
+  * net: dc2114x: remove unused lines and change the var and print types
+  * net: dc2114x: add support for CPUs that have cache between the memory and the card
+  * net: dc2114x: set the card number to start at zero
+  * net: dc2114x: get mac address from environment
+  * net: dc2114x: add support for platforms that don't have pci controllers
+  * Merge tag 'u-boot-rockchip-20241026' of https://gitlab.denx.de/u-boot/custodians/u-boot-rockchip
+  * rockchip: rk3588-nanopc-t6: Add support for NanoPC-T6 LTS
+  * adc: rockchip-saradc: Use vdd-microvolts prop as fallback
+  * adc: Allow use of adc with DM_REGULATOR disabled
+  * rockchip: rk3588-nanopc-t6: Drop upstream props from u-boot.dtsi
+  * arm64: dts: rockchip: add SPI flash on NanoPC-T6
+  * arm64: dts: rockchip: add NanoPC-T6 LTS
+  * arm64: dts: rockchip: move NanoPC-T6 parts to DTS
+  * arm64: dts: rockchip: prepare NanoPC-T6 for LTS board
+  * rockchip: rk3399-pinephone-pro: Drop upstream props from u-boot.dtsi
+  * rockchip: rk3588-rock-5b: Drop upstream props from u-boot.dtsi
+  * rockchip: board: Increase rng-seed size to make it sufficient for modern Linux
+  * Merge tag 'u-boot-imx-master-20241025a' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx
+  * ARM: imx: soc: Move default TEXT_BASE for i.MX7
+  * ARM: imx: soc: Select default TEXT_BASE for i.MX6
+  * ARM: dts: imxrt1170: Fix default cells value warnings
+  * configs: imxrt1050-evk: Enable standard boot
+  * imx: imxrt1050-evk: Fix missing clocks for mmc
+  * imx: imxrt*: Fix binman breaking boot
+  * arm64: imx: Deduplicate DH i.MX6 DHSOM defconfig
+  * arm64: imx: Deduplicate DH i.MX8MP DHSOM defconfigs
+  * arm64: imx: imx8mp: Disable PCA954x I2C mux on DH i.MX8MP DRC02 and PicoITX
+  * arm64: imx: imx8mp: Disable PCI support on DH i.MX8MP DHCOM SoM on DRC02 board
+  * arm64: imx: imx8mp: Enable DM regulator on DH i.MX8MP DHCOM SoM on DRC02 board
+  * Merge patch series "Allow showing the memory map"
+  * meminfo: Show the lmb records
+  * lmb: Export the lmb data structure
+  * cmd: Update the meminfo command to show the memory map
+  * cmd: Move meminfo command into its own file
+  * bootstage: Allow counting memory without strings
+  * global_data: Add some more accessors
+  * common: Tidy up how malloc() is inited
+  * common: Fix up malloc() comment in reserve_noncached()
+  * Merge tag 'xilinx-for-v2025.01-rc1-v2' of https://source.denx.de/u-boot/custodians/u-boot-microblaze
+  * Merge tag 'u-boot-dfu-20241025' of https://source.denx.de/u-boot/custodians/u-boot-dfu
+  * .mailmap: update e-mail address for Padmarao Begari
+  * spi: zynq_qspi: Add missing prototype for update_stripe
+  * board: rockchip: Add Hardkernel ODROID-M1S
+  * arm64: dts: rockchip: Add Hardkernel ODROID-M1S
+  * arm64: dts: rockchip: Correct vendor prefix for Hardkernel ODROID-M1
+  * rockchip: Migrate to use USB_DWC3_GENERIC on RK3328
+  * board: rockchip: Add Hardkernel ODROID-M2
+  * arm64: dts: rockchip: Add Hardkernel ODROID-M2
+  * rockchip: rk3399: Weaken dependency on SPL serial
+  * board: rockchip: Enable PD_VO before driver access
+  * board: rockchip: Remove ARM SCMI Support from RGxx3
+  * board: rockchip: Add vdd_cpu reg fixup for RGXX3 Series
+  * board: rockchip: Convert Anbernic RGxx3 to OF_UPSTREAM
+  * rockchip: px30: clk: add UART0 clock getter/setter
+  * arm: dts: rockchip: turn LEDs on at boot for Radxa boards
+  * configs: rockchip: enable gpio-leds driver for Radxa boards
+  * arm: dts: rockchip: fix dts for Radxa ROCK 4C+
+  * amd: Disable LMB, BOOTM, MTD and EFI loader for mini configurations
+  * arm64: zynqmp: fix tcm initialization for mini u-boot
+  * arm64: xilinx: Fix file location described in zynqmp-p-a2197-00-revA.dts
+  * arm64: versal-net: Remove current-speed from mini
+  * arm64: zynqmp: Add description for SC on vm-p-m1369 board
+  * xilinx: Add cap-mmc-hw-reset and no-sd, no-sdio property to eMMC
+  * xilinx: zynqmp: Remove conditional check for bootmenu_default variable
+  * xilinx: common: fix script address for Microblaze
+  * arm64: versal: Wire USB0 in distro boot
+  * arm64: versal: Remove description for USB1
+  * arm64: zynqmp: Fix tcminit mode value based on argv
+  * arm64: zynqmp: Print an error for split to lock mode switch
+  * imx8m: set sane default value for SPL_LOAD_FIT_ADDRESS
+  * mmc: fsl_esdhc: Convert to use livetree API for fdt access
+  * i2c: mxc_i2c: Convert to use livetree API for fdt access
+  * imx: power-domain: Convert to use livetree API for fdt access
+  * pinctrl: imx: Convert to use livetree API for fdt access
+  * verdin-imx8m{m|p}: defconfig: update fastboot buffer size/address
+  * imx: Support i.MX93 9X9 QSB board
+  * imx9: clock: Add 800MHz fracpll entry
+  * arm: dts: imx8qm-mek: fix boot
+  * arm: dts: imx8qxp-mek: fix boot
+  * mx6ul_14x14_evk: Convert to watchdog driver model
+  * mx6ul_14x14_evk: Remove unneeded USB board code
+  * Mark a few functions static inline
+  * cmd: nvedit: Mark a few functions static
+  * block: make blk_create_device() static
+  * rockchip: block: simplify rkmtd driver
+  * arm: dts: k3-j722s-r5-evm: Add LPDDR4 4000 MT/s configs
+  * boot: Introduce BOOTSTD_MENU to control bootflow menu build
+  * mcp230xx_gpio.c: Add a missing include file.
+  * Merge https://source.denx.de/u-boot/custodians/u-boot-spi
+  * mtd: spi-nor: Add mt35xu01gbba octal mode SPI NOR flash
+  * mtd: spi-nor-ids: Add Puya Semiconductor chips description
+  * image: android: handle ramdisk default address
+  * image: android: do not boot XIP when kernel is compressed
+  * image: android: use ulong for kernel address
+  * common: android_ab: fix slot suffix for abc block
+  * cmd: bcb: introduce 'ab_dump' command to print BCB block content
+  * cmd: bcb: change strcmp() usage style in the do_bcb_ab_select()
+  * treewide: bcb: move ab_select command to bcb subcommands
+  * cmd: bcb: rework the command to U_BOOT_LONGHELP approach
+  * include/android_ab: move ab_select_slot() documentation to @ notation
+  * dfu: sf: rely on DT for spi speed and mode
+  * spi: add DM_SPI_FLASH compatibility inline functions
+  * Merge https://source.denx.de/u-boot/custodians/u-boot-watchdog
+  * watchdog: introduce separate SPL symbol for WDT_GPIO
+  * global_data.h: remove unnecesary include of cyclic.h
+  * boot: cedit: include u-boot/schedule.h
+  * ddr: altera: include u-boot/schedule.h
+  * i2c: rzg2l: include u-boot/schedule.h
+  * lib/sha*: include u-boot/schedule.h instead of cyclic.h
+  * watchdog.h: change include of cyclic.h to u-boot/schedule.h
+  * cyclic: make cyclic_run static
+  * test: dm: wdt: replace cyclic_run() by schedule()
+  * fs/cramfs: use schedule instead of cyclic_run as callback
+  * m68k: asm/ptrace.h: include linux/types.h
+  * led: include cyclic.h in led_sw_blink.c
+  * cyclic: introduce u-boot/schedule.h
+  * doc: cyclic: remove reference to WATCHDOG_RESET
+  * drivers: watchdog: Add DaVinci's watchdog support
+  * watchdog: gpio_wdt: add support for stoppable devices
+  * Merge tag 'video-20241022' of https://source.denx.de/u-boot/custodians/u-boot-video
+  * video: simplefb: Fix build warn with CONFIG_FDT_64BIT=n
+  * board: ti: am62x: evm: Update simple-framebuffer node in device-tree
+  * boot: fdt_simplefb: Remove conditional compilation checks for VIDEO Kconfig
+  * boot/Kconfig: Add Video Kconfig as dependency for FDT_SIMPLEFB
+  * video: Fix VNBYTES() macro comment
+  * envtools: make them build again
+  * Merge patch series "aspeed: ast2700: Add Caliptra ECDSA driver"
+  * drivers/crypto: aspeed: Add Caliptra ECDSA384 support
+  * image-fit-sig: Remove padding check
+  * lib: ecdsa: Add ECDSA384 support
+  * Merge patch series "Add AVS support for J721S2"
+  * configs: j721s2_evm_r5_defconfig: Add AVS Configs
+  * arm: dts: j721s2: Add VTM node in R5
+  * arm: mach-k3: j721s2_init: Initialize AVS Class 0
+  * drivers: misc: k3_avs: Extract MPU clk and dev ID from DT
+  * arm: dts: k3-*-r5: Add MPU clock in clocks property
+  * drivers: misc: k3_avs: Check return code while programming AVS
+  * power: pmic: tps65941: Add DM_PMIC dependency
+  * Merge patch series "Add TI K3 PCIe Controller support for J7200"
+  * configs: j7200_evm_a72_defconfig: Enable configs for PCI support
+  * pci: Add TI K3 Cadence PCIe Controller
+  * Merge patch series "dwc3: gadget: properly fix cache operations"
+  * usb: dwc3: invalidate dcache on buffer used in interrupt handling
+  * usb: dwc3: fix dcache flush range calculation
+  * usb: dwc3: allocate setup_buf with dma_alloc_coherent()
+  * Merge tag 'i2c-tag-v2025.01-rc1' of https://source.denx.de/u-boot/custodians/u-boot-i2c
+  * i2c: i2c-gpio: add support for i2c-gpio,sda-output-only
+  * i2c: muxes: pca954x: Add MAX735x/MAX736x support
+  * Merge tag 'efi-2025-01-rc1-2' of https://source.denx.de/u-boot/custodians/u-boot-efi
+  * Merge tag 'dm-pull-17oct24-take2' of https://gitlab.denx.de/u-boot/custodians/u-boot-dm
+  * mtd: spi-nor: Move SR3 WPS bit definition in the correct location
+  * mbedtls: fix defects in coverity scan
+  * cmd: upl: correct printf code
+  * lmb: notify when adjacent regions are added
+  * x86: cpu: Add missing header inclusion
+  * x86: cpu: Add a few prototypes to the header file
+  * x86: cpu: Mark a few functions static
+  * x86: cpu: Use default print_cpuinfo() for all
+  * x86: Enable RTC command by default
+  * doc: Update coreboot's CI information
+  * docker: Update coreboot
+  * expo: Add forward declaration for udevice to cedit
+  * expo: Drop scene_title_set()
+  * expo: Drop unneceesary calls to expo_str()
+  * expo: Support menu-item values in cedit
+  * expo: Add a little more cedit CMOS logging
+  * expo: Allow menu items to have values
+  * expo: Use standard numbering for save and discard
+  * expo: Set the initial next_id to 1
+  * expo: Place menu items to the right of all labels
+  * video: Avoid starting a new line to close to the bottom
+  * video: Add a dark-grey console colour
+  * sandbox: dts: Add missing sandbox, emul phandle to sandbox-pmic
+  * binman: Add a tutorial on resolving test-coverage bugs
+  * binman: Support getting test-coverage on just one test
+  * u_boot_pylib: Support running coverage on selected functions
+  * sandbox_spl: Restrict use of UPL when not enabled
+  * buildman: Correct some warnings about regex strings
+  * binman: implement signing FIT images during image build
+  * image-host: fix 'unknown error' error message
+  * binman: fix passing loadables to mkimage on first run
+  * bootstd: Avoid calling unavailable block functions
+  * blk: Make functions available unconditionally
+  * x86: coreboot: Enable receiving timestamps from coreboot
+  * x86: coreboot: Add timestamps from coreboot to bootstage
+  * x86: coreboot: Update the timestamp code to use sysinfo
+  * x86: Add msr command
+  * x86: Add a cpuid command
+  * x86: Sync up tsc_timer with Linux
+  * x86: Avoid timer-clock overflow
+  * x86: Ensure the CPU identity exists for timer init
+  * x86: Show the CPU vendor in bdinfo
+  * virtio: blk: introduce virtio-block erase support
+  * x86: Make default_print_cpuinfo be a weak alias for print_cpuinfo
+  * coreboot: Switch to a monospaced font
+  * video: Allow querying the font size
+  * efi_driver: use blk_create_devicef()
+  * efi_loader: remove ERROR:, WARNING: prefixes in messages
+  * efi_loader: add missing lf in error message
+  * Merge tag 'u-boot-imx-master-20241018a' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx
+  * Merge tag 'u-boot-at91-fixes-2025.01-a' of https://source.denx.de/u-boot/custodians/u-boot-at91
+  * Azure: Update to latest containers
+  * efi_loader: reduce noisiness if ESP is missing
+  * efi_loader: avoid #ifdef in efi_setup.c
+  * cmd: wget: CONFIG_CMD_WGET must depend on CONFIG_CMD_NET
+  * doc: blkmap: Fix typo in command example
+  * doc: board: ti: am62x_sk: Add document for Ethernet boot on AM62x SoC.
+  * cpu: imx8_cpu: Avoid revision to corrupt device tree
+  * pico-imx7d: Increase ODT resistor value
+  * clk: imx8: Add dummy clk
+  * ARM: dts: imx6-dhcom: Remove fdt_high and initrd_high env variables
+  * arm64: dts: imx: Switch to using upstream DT on DH i.MX8MP DHCOM PDK2/PDK3
+  * dts: Add ability to build fallback DTBOs from arch/$(ARCH)/dts
+  * ARM: at91: clock: Add missing include of asm/io.h
+  * Merge patch series "Cleanup dma device in spl and move dma channel[0]"
+  * dma: ti: k3-udma: Move DMA channel[0] allocation to probe and add udma_remove()
+  * dma: ti: k3-udma: Move udma_probe() below all APIs
+  * configs: k3: Enable device removal in SPL
+  * mach-k3: common.c: Remove dma device in spl exit
+  * arm: dts: k3-j722s-binman: Add support for HS-SE
+  * arm: mach-k3: j784s4: Add clk and power support for wkup_uart
+  * cmd: irq: Move do_irqinfo() prototype to a header file
+  * arm: mach-k3: am62: fixup thermal cooling device cpus
+  * lib: fdtdec: Parse the gzip/lzo headers only when dependencies have met
+  * Extend usage for OF_OVERLAY_LIST beyond SPL
+  * Makefile: Drop SPL_FIT_SOURCE support
+  * Merge tag 'u-boot-stm32-20241017' of https://source.denx.de/u-boot/custodians/u-boot-stm
+  * Merge tag 'u-boot-dfu-20241017' of https://source.denx.de/u-boot/custodians/u-boot-dfu
+  * Merge https://source.denx.de/u-boot/custodians/u-boot-usb
+  * MAINTAINERS: add TCPM section
+  * rockchip: rock5b-rk3588: Enable USB-C PD support
+  * rockchip: rk3588-rock-5b: Add USB-C controller to u-boot.dtsi
+  * board: rock5b-rk3588: enable USB-C in operating system
+  * usb: tcpm: fusb302: add driver
+  * usb: tcpm: add core framework
+  * Merge patch series "some serial rx buffer patches"
+  * serial: embed the rx buffer in struct serial_dev_priv
+  * serial: add build-time sanity check of CONFIG_SERIAL_RX_BUFFER_SIZE
+  * serial: do not overwrite not-consumed characters in rx buffer
+  * serial: fix circular rx buffer edge case
+  * stm32mp: cosmetic: remove empty comment block in configs file
+  * ARM: stm32: Add script to install U-Boot from SD/eMMC to SPI NOR on DH STM32MP15xx DHSOM
+  * stm32mp: fix name of optee reserved memory node
+  * doc: clarify scmi device tree for stm32mp15 boards
+  * ARM: stm32mp: enable data cache after LMB configuration for STM32MP1
+  * stm32mp: compute ram_top based on the optee base address only for STM32MP1
+  * ARM: dts: stm32: Generate u-boot.itb using binman on DH STM32 DHSOM
+  * ARM: dts: stm32: Switch to using upstream DT on DH STM32 DHSOM
+  * ARM: dts: stm32: Duplicate cpu0-opp-table node into stm32mp15-u-boot.dtsi
+  * ARM: stm32: Update MAINTAINERS file globs for STM32MP DHSOM
+  * Merge patch series "Introduce the lwIP network stack"
+  * MAINTAINERS: net: lwip: add myself as a maintainer
+  * CI: add qemu_arm64_lwip to the test matrix
+  * net: lwip: add TFTP_BLOCKSIZE
+  * net: lwip: tftp: add support of blksize option to client
+  * configs: add qemu_arm64_lwip_defconfig
+  * test: boot: fix bootflow_cmd_label for when DSA_SANDBOX is disabled
+  * cmd: bdinfo: enable -e when CONFIG_CMD_NET_LWIP=y
+  * test: boot: fix bootdev_test_any for when DSA_SANDBOX is disabled
+  * net: lwip: add wget command
+  * sandbox: add dummy driver ETH_SANDBOX_LWIP
+  * net: split cmd/net.c into cmd/net.c and cmd/net-common.c
+  * net: lwip: add dns command
+  * net: lwip: add ping command
+  * net: lwip: add TFTP support and tftpboot command
+  * net: lwip: tftp: bind to TFTP port only when in server mode
+  * net: lwip: add DHCP support and dhcp commmand
+  * net: lwip: build lwIP
+  * net: eth-uclass: add function eth_start_udev()
+  * net: split net into net{,-common,-legacy,-lwip}
+  * net: introduce alternative implementation as net/lwip/
+  * configs: use syntax CONFIG_FOO=n in tools-only_defconfig
+  * Merge commit 'f3f86fd1fe0fb288356bff78f8a6fa2edf89e3fc' as 'lib/lwip/lwip'
+  * Squashed 'lib/lwip/lwip/' content from commit 0a0452b2c39b
+  * .mailmap: update e-mail address for Eugen Hristev
+  * Revert "Makefile: Drop SPL_FIT_GENERATOR / SPL_FIT_SOURCE support" changes
+  * Merge https://source.denx.de/u-boot/custodians/u-boot-usb
+  * Merge patch series "Make EFI memory allocations synchronous with LMB"
+  * lmb: replace the double-underscore with single-underscore for all functions
+  * efi_memory: rename variable to highlight overlap with free memory
+  * lmb: remove call to efi_lmb_reserve()
+  * efi_memory: do not add RAM memory to the memory map
+  * x86: e820: use the lmb API for adding RAM memory
+  * layerscape: use the lmb API's to add RAM memory
+  * lmb: allow for boards to specify memory map
+  * stm32mp: remove efi_add_known_memory() function definition
+  * ti: k3: remove efi_add_known_memory() function definition
+  * efi_memory: do not add U-Boot memory to the memory map
+  * lmb: notify of any changes to the LMB memory map
+  * efi: memory: use the lmb API's for allocating and freeing memory
+  * lmb: add and reserve memory above ram_top
+  * lmb: add a flag to allow suppressing memory map change notification
+  * lmb: add versions of the lmb API with flags
+  * test: Drop mention of old flags in a comment
+  * Makefile: Drop SPL_FIT_GENERATOR support
+  * Makefile: Drop SPL_FIT_SOURCE support
+  * test: Fix skip check for sleep command test
+  * CI: Do not test "sleep" in QEMU
+  * net: correct wget_connected debug messages
+  * net/wget: set filesize
+  * Revert "mmc: dw_mmc: Extract FIFO data transfer into a separate routine"
+  * Merge patch series "test: Minor fixes to test.py"
+  * Merge patch series to add a "fallback" keyword to extlinux.conf parsing
+  * test: Add tests for the bootmeth set command
+  * test: Fix mulptiplex_log typo
+  * bootstd: Add command to enable setting of bootmeth specific properties
+  * test: Tidy up remaining exceptions
+  * boot: Add logic to enable booting from fallback option
+  * test: Detect dead connections
+  * boot: pxe_utils: Add fallback support
+  * test: Separate out the exception handling
+  * test: Move the receive code into a function
+  * test: Create a common function to get the config
+  * test: Avoid failing skipped tests
+  * test: Use a constant for the test timeout
+  * Merge patch series "mtd: Make sure UBIFS does not do multi-pass page programming on flashes that don't support it"
+  * mtd: spi-nor: Set ECC unit size to MTD writesize in Infineon SEMPER flashes
+  * mtd: spi-nor: Call spi_nor_post_sfdp_fixups() only after spi_nor_parse_sfdp()
+  * mtd: spi-nor: Replace default_init() hook with late_init()
+  * mtd: spi-nor: Check nor->info before setting macronix_octal_fixups
+  * mtd: spi-nor: Allow flashes to specify MTD writesize
+  * mtd: ubi: Do not zero out EC and VID on ECC-ed NOR flashes
+  * usb: dwc3: invalidate dcache on buffer used in interrupt handling
+  * usb: dwc3: fix dcache flush range calculation
+  * usb: dwc3: allocate setup_buf with dma_alloc_coherent()
+  * dts: Deduplicate dtbs target
+  * Merge patch series "Integrate MbedTLS v3.6 LTS with U-Boot"
+  * configs: enable MbedTLS as default setting
+  * test: Remove ASN1 library test
+  * asn1_decoder: add build options for ASN1 decoder
+  * lib/rypto: Adapt rsa_helper to MbedTLS
+  * mbedtls: add RSA helper layer on MbedTLS
+  * lib/crypto: Adapt mscode_parser to MbedTLS
+  * mbedtls: add MSCode parser porting layer
+  * lib/crypto: Adapt PKCS7 parser to MbedTLS
+  * mbedtls: add PKCS7 parser porting layer
+  * lib/crypto: Adapt x509_cert_parser to MbedTLS
+  * mbedtls: add X509 cert parser porting layer
+  * lib/crypto: Adapt public_key header with MbedTLS
+  * mbedtls: add public key porting layer
+  * pkcs7: move common functions to PKCS7 helper
+  * x509: move common functions to x509 helper
+  * public_key: move common functions to public key helper
+  * mbedtls/external: update MbedTLS PKCS7 test suites
+  * mbedtls/external: support decoding multiple signer's cert
+  * mbedtls/external: support PKCS9 Authenticate Attributes
+  * mbedtls/external: support Microsoft Authentication Code
+  * mbedtls: Enable smaller implementation for SHA256/512
+  * mbedtls: add digest shim layer for MbedTLS
+  * sha1: Remove sha1 non-watchdog API
+  * md5: Remove md5 non-watchdog API
+  * lib: Adapt digest header files to MbedTLS
+  * mbedtls: add mbedtls into the build system
+  * CI: Exclude MbedTLS subtree for CONFIG checks
+  * usb: xhci: Define 'XHCI_MAX_HALT_USEC' macro only once
+  * usb: xhci: pet watchdog during transfers
+  * Merge tag 'u-boot-ufs-next-20241014' of https://source.denx.de/u-boot/custodians/u-boot-ufs
+  * Merge tag 'u-boot-amlogic-next-20241014' of https://source.denx.de/u-boot/custodians/u-boot-amlogic
+  * Merge branch 'u-boot-nand-20241012' of https://source.denx.de/u-boot/custodians/u-boot-nand-flash
+  * configs: meson64: Ensure commands for boot targets are available
+  * configs: meson64_android: Remove dtbo support
+  * configs: khadas-vim3{l}: Increase boot/recovery partition size
+  * power/domain: meson-ee-pwrc: make sure to not enable a domain twice
+  * clk: meson: gxbb: add HDMI clocks
+  * video: meson: dw-hdmi: do not fail probe if HDMI regulator is already enabled
+  * dts: meson-g12-common-u-boot: do not disable canvas
+  * ARM: meson: add support for Libre Computer aml-s905d3-cc
+  * ARM: meson: add support for Libre Computer aml-a311d-cc
+  * board: libre-computer: aml-s805x-cc: Enable capsule updates
+  * board: libretech-ac: move board support into dedicated directory
+  * ufs: Add Support for Qualcomm UFS HC driver
+  * ufs: allow UFSHCI version 4.0
+  * ufs: add get_max_pwr_mode callback
+  * ufs: add device_reset callback
+  * configs: versal2: Add support for AMD UFS platform driver
+  * ufs: ufs-amd-versal2: Add support for AMD UFS controller
+  * ufs: add support for DesignWare Controller
+  * ufs: core: remove link_startup_again logic
+  * MAINTAINERS: Add myself to the list of UFS maintainers
+  * ufs: Fix debug message in 'ufs_start'
+  * ufs: Add missing memory barriers
+  * ufs: Sync possible UFS Quirks with Linux UFS driver
+  * ufs: Clear UECPA once due to LINERESET has happened during LINK_STARTUP
+  * ufs/ufs.h: Add definition of 'ufshcd_rmwl()'
+  * ufs: Add UFSHCD_QUIRK_HIBERN_FASTAUTO
+  * ufs: Add UFSHCD_QUIRK_BROKEN_64BIT_ADDRESS
+  * ufs: use dcache helpers for scsi_cmd data and only invalidate if necessary
+  * ufs: split flush and invalidate to only invalidate when required
+  * ufs: fix dcache flush and invalidate range calculation
+  * ufs: allocate descriptors with size aligned with DMA_MINALIGN
+  * Merge branch 'master' of https://source.denx.de/u-boot/custodians/u-boot-sunxi
+  * Merge branch 'master' of https://source.denx.de/u-boot/custodians/u-boot-sh
+  * Merge tag 'u-boot-imx-master-20241013' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx
+  * clk: renesas: Synchronize R-Car R8A779H0 V4M clock tables with Linux 6.10.9
+  * clk: renesas: Synchronize R-Car R8A779G0 V4H clock tables with Linux 6.10.9
+  * clk: renesas: Synchronize R-Car R8A779F0 S4 clock tables with Linux 6.10.9
+  * clk: renesas: Synchronize R-Car R8A779A0 V3U clock tables with Linux 6.10.9
+  * pinctrl: renesas: Synchronize R-Car R8A779H0 V4M PFC tables with Linux 6.10.9
+  * pinctrl: renesas: Synchronize R-Car R8A779G0 V4H PFC tables with Linux 6.10.9
+  * sh: cache: Fill in invalidate_icache_all()
+  * Merge branch 'staging' of https://source.denx.de/u-boot/custodians/u-boot-tegra
+  * video: panel: add Sharp LQ101R1SX01 MIPI DSI panel driver
+  * video: tegra20: dsi: add ganged mode support
+  * video: tegra20: dc: remove DECLARE_GLOBAL_DATA_PTR use
+  * usb: host: tegra: get usb phy configuration from phy node
+  * arm: tegra: add AP20 and AP20H SKU
+  * arm: tegra: fix typo in logging functions
+  * board: asus: transformer: implement multi-DTB support
+  * board: asus: grouper: implement multi-DTB support
+  * board: htc: endeavoru: simplify RCM hook
+  * board: asus: grouper: dynamically detect correct SPL configuration
+  * drivers: tegra_gpio: add early SPL functions
+  * ARM: tegra-u-boot: add recipe for multi-dtb image
+  * ARM: tegra: board2: add common dtb reselect logic
+  * Tegra30: Add funcmux for UART over SD slot
+  * board: tegra: convert boards to text env
+  * disk: add TegraPT support
+  * clk: imx8mp: Add i.MX8MP Dummy clk
+  * arm64: imx: imx8mp-debix-model-a: Migrate to OF_UPSTREAM
+  * imx8: Correct the SCU API return value check
+  * binman: add fast authentication method for i.MX8M signing
+  * binman: cosmetic: refactor `nxp_imx8mcst' etype code
+  * ARM: imx: Update MAINTAINERS file globs for i.MX8MP DHSOM
+  * ARM: imx: Update MAINTAINERS file globs for i.MX6 DHSOM
+  * misc: fuse: Update fuse driver
+  * misc: fuse: Fix FSB redundancy fuse word check and clear res
+  * misc: ele_api: Add read/write shadow fuse APIs
+  * misc: ele_api: Update ELE read common fuse API
+  * misc: ele_mu: Clear RR when initialize MU
+  * misc: ele_mu: Update ELE MU to get TR/RR number from HW
+  * board: bcm96846: Switch to using OF_UPSTREAM
+  * board: bcm96846: Enable NAND options
+  * drivers: nand: bcmbca: Enable on BCM6846
+  * mtd: rawnand: brcmnand: Add BCMBCA RAW NAND driver
+  * mtd: nand: raw: atmel: Use ONFI ECC params if available
+  * Merge patch series "Tidy up use of 'SPL' and CONFIG_SPL_BUILD"
+  * qconfig: Update tool for new Makefile variables
+  * spl: Rename SPL_TPL_NAME and SPL_TPL_PROMPT
+  * global: Rename SPL_TPL_ to PHASE_
+  * global: Rename SPL_ to XPL_
+  * kconfig: binman: Check for SPL instead of XPL
+  * xpl: Define CONFIG_SPL_BUILD only for the SPL build
+  * global: Use CONFIG_XPL_BUILD instead of CONFIG_SPL_BUILD
+  * include: Use CONFIG_XPL_BUILD instead of CONFIG_SPL_BUILD
+  * drivers: Use CONFIG_XPL_BUILD instead of CONFIG_SPL_BUILD
+  * board: Use CONFIG_XPL_BUILD instead of CONFIG_SPL_BUILD
+  * arch: Use CONFIG_XPL_BUILD instead of CONFIG_SPL_BUILD
+  * doc: Update init docs for the xPL changes
+  * doc: Move init-related things out of README
+  * README: Drop SoC-specific comment about SPL
+  * doc: Update SPL docs for the xPL changes
+  * log: global: Rename warn_non_spl()
+  * xpl: Rename spl_phase_prefix() and spl_phase_name()
+  * xpl: Rename spl_next_phase() and spl_prev_phase()
+  * xpl: Add a function to indicate when in xPL
+  * xpl: Rename spl_in_proper() to not_xpl()
+  * xpl: Rename spl_phase() to xpl_phase()
+  * xpl: Rename spl_phase to xpl_phase_t
+  * xpl: Rename u_boot_first_phase to xpl_is_first_phase()
+  * qconfig: Add XPL_BUILD to ignored symbols
+  * scripts: Define CONFIG_XPL_BUILD for all xPL builds
+  * scripts: Add some comments about autoconf.mk
+  * scripts: Rename Makefile.spl to Makefile.xpl
+  * stdio: Make use of the SERIAL define
+  * serial: Make use of the SERIAL define
+  * net: freescale: Drop use of SPL_BUILD dependency
+  * tegra: Drop dependency on SPL_BUILD
+  * boot: Drop unnecessary ifdef for LOAD_FIT
+  * Makefile: Add a u-boot.cfg file for VPL
+  * Merge branch 'master' of https://source.denx.de/u-boot/custodians/u-boot-usb
+  * usb: gadget: cdns3: Fix cdns3_ep_config() by setting ep.maxpacket
+  * Make AVB_VERIFY depend on FASTBOOT
+  * usb: dwc3-generic: fix CONFIG_DM_REGULATOR-off case
+  * Merge patch series "led: introduce LED boot and activity function"
+  * test: dm: Expand ofnode options test with new helper
+  * test: dm: Add tests for LED boot and activity
+  * doc: introduce led.rst documentation
+  * ubi: implement support for LED activity
+  * mtd: implement support for LED activity
+  * tftp: implement support for LED activity
+  * led: implement LED activity API
+  * common: board_r: rework BOOT LED handling
+  * led: implement LED boot API
+  * dm: core: implement ofnode_options helpers
+  * led: toggle LED on initial SW blink
+  * power: pmic: pca9450: Add missing newline
+  * power: pmic/regulator: Support pca9452
+  * power: regulator: pca9450: Update the BUCK1 voltage range
+  * power: mp5416: Fix LDO SVAL for MP5416 PMIC
+  * mtd: spi-nor-ids: Add support for S28HS256T
+  * Merge patch series "mtd: spi-nor-ids: Add NO_CHIP_ERASE flag to Infineon 2Gb parts"
+  * mtd: spi-nor-ids: Add NO_CHIP_ERASE flag to Infineon s28hs02gt
+  * mtd: spi-nor-ids: Add NO_CHIP_ERASE flag to Infineon s25hl02Gt and s25hs02gt
+  * Merge patch series "mtd: spi-nor: Add support for S25FS-S family"
+  * mtd: spi-nor-id: Add S25FS064S, S25FS128S, S25FS256S IDs
+  * mtd: spi-nor-id: Use INFO6 macro for S25FL-S
+  * mtd: spi-nore-core: Fix 4KB erase opcode for s25fs-s
+  * mtd: spi-nor-ids: Extend w25q16cl entry with locking support
+  * mtd: spi-nor-ids: Deduplicate mx25u25635f entry
+  * mtd: spi-nor-ids: Deduplicate w25q16dw entry
+  * mtd: spi-nor: Clear Winbond SR3 WPS bit on boot
+  * Merge tag 'efi-2025-01-rc1' of https://source.denx.de/u-boot/custodians/u-boot-efi
+  * sandbox: enable clk command on the sandbox
+  * cmd: clk: simplify clk command
+  * cmd/Kconfig: CONFIG_CMD_CLK should depend on CONFIG_CLK
+  * boot: typo boormethod
+  * test: don't call restart_uboot in EFI watchdog test
+  * bootstd: Add debugging for efi bootmeth
+  * efi_loader: Show FirmwareVendor and FirmwareRevision in helloworld
+  * efi_loader: Shorten the app rules further
+  * efi_loader: Shorten the app rules
+  * efi: arm: x86: riscv: Drop crt0/relocal extra- rules
+  * efi_loader: Rename and move CMD_BOOTEFI_HELLO_COMPILE
+  * doc: Move the generic memory-documentation to doc/
+  * efi_leader: delete rng-seed if having EFI RNG protocol
+  * sunxi: Add support for Anbernic RG35XX-2024
+  * arm64: dts: allwinner: h616: Add r_i2c pinctrl nodes
+  * arm64: dts: allwinner: h616: Change RG35XX Series from r_rsb to r_i2c
+  * sunxi: H616: dram: Update mbus priorities
+  * sunxi: H616: DRAM: Adjust size scan procedure
+  * sunxi: H616: DRAM: Adjust configuration procedure
+  * sunxi: H616: DRAM: Add alternative pin mapping
+  * sunxi: H616: dram: LPDDR4: adjust settings
+  * sunxi: power: axp809: Fix DCDC4 programming
+  * clk: sunxi: a80: Fix reset description
+  * sunxi: H616: switch to OF_UPSTREAM
+  * mtd: simplify CONFIG_DM_SPI_FLASH dependencies
+  * Merge patch series "spi: Various Kconfig fixes"
+  * spi: rockchip_sfc: Select BOUNCE_BUFFER
+  * spi: ca_sflash: Add missing dm include
+  * spi: mtk_spim: Remove completion.h include
+  * spi: Kconfig: Add some required arch depends for drivers
+  * Merge patch series "spi-nor: Add parallel and stacked memories support"
+  * config: xilinx: Enable the SPI_ADVANCE config option
+  * spi: zynq_qspi: Add parallel memories support in QSPI driver
+  * spi: zynqmp_gqspi: Add parallel memories support in GQSPI driver
+  * spi: spi-uclass: Read chipselect and restrict capabilities
+  * mtd: spi-nor: Add parallel and stacked memories support in read_bar and write_bar
+  * mtd: spi-nor: Add parallel memories support for read_sr and read_fsr
+  * mtd: spi-nor: Add parallel and stacked memories support
+  * config: mx6sabresd: Default don't enable the flash lock
+  * Merge commit '0344c602eadc0802776b65ff90f0a02c856cf53c' as 'lib/mbedtls/external/mbedtls'
+  * Squashed 'lib/mbedtls/external/mbedtls/' content from commit 2ca6c285a0dd
+  * arch: arm: dts: k3-j7200-r5-evm: Enable AVS feature
+  * configs: Resync with savedefconfig
+  * cmd: Make bootvx independent of bootelf
+  * mkimage: ecdsa: add nodes to signature/key node
+  * mkimage: ecdsa: add signature/key nodes to dtb if missing
+  * configs: am64x*_r5_defconfig: Drop BOOTCOMMAND
+  * serial: ns16550: Try get serial clock rate from DT before CLK
+  * pinctrl: mediatek: Bind gpio while binding pinctrl
+  * Merge branch 'next'
+  * Merge branch 'u-boot-nand-20241005' of https://gitlab.denx.de/u-boot/custodians/u-boot-nand-flash into next
+  * mtd: rawnand: brcmnand: Add support for getting ecc setting from strap
+  * mtd: rawnand: brcmnand: Support write protection setting from dts
+  * mtd: rawnand: brcmnand: Add read data bus interface
+  * mtd: rawnand: brcmnand: Fix mtd oobsize
+  * mtd: rawnand: brcmnand: Fix potential out-of-bounds access in oob write
+  * mtd: rawnand: brcmnand: Fix potential false time out warning
+  * mtd: rawnand: brcmnand: Fix ECC level field setting for v7.2 controller
+  * Merge tag 'u-boot-imx-next-20241005' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx into next
+  * Merge branch 'qcom-next' of https://source.denx.de/u-boot/custodians/u-boot-snapdragon into next
+  * rockchip: Provid SPL control over otp presence
+  * clk/qcom: sm8250: add debug data
+  * clk/qcom: sm6115: add debug data
+  * clk/qcom: sdm845: add dump data
+  * clk/qcom: implement clk dump
+  * Revert "gpio: qcom_pmic: add a quirk to skip GPIO configuration"
+  * pinctr: qcom: sm8250: add special pins pins configuration data
+  * gpio: msm: add support for special pins
+  * phy: qcom: Add QMP UFS PHY driver
+  * phy: qcom: Import QMP phy related header files from Linux
+  * config: qcom: add sm8150 to qcom_defconfig
+  * pinctrl: qcom: add driver for SM8150 SoC
+  * clk: qcom: add driver for SM8150 SoC
+  * lxr2: Add DA9063 watchdog support
+  * da9063: Add watchdog support
+  * ARM: imx: Drop bogus newline
+  * arch: arm: dts: imx8mm-cl-iot-gate.dts: add no-mmc-hs400 to mmc2
+  * arm: imx: imx8m: soc: Fix VPU fdt disable fixup
+  * mmc: fsl_esdhc_imx: Reset tuning logic
+  * mmc: fsl_esdhc_imx: Avoid resource leak
+  * mmc: fsl_esdhc_imx: Fix host_caps issue for non-DM driver
+  * mmc: fsl_esdhc_imx: Send 80 clocks before IDLE command
+  * mmc: fsl_esdhc_imx: Enable AHB/IPG clk with clk bulk API
+  * gpio: adp5585: Add SPL config for ADP5585 driver
+  * arm64: dts: imx8mp: Add DH i.MX8MP DHCOM SoM on DRC02 carrier board
+  * arm64: dts: imx8mp: Add support for DH electronics i.MX8M Plus DHCOM PicoITX
+  * Merge tag 'u-boot-dfu-next-20241003' of https://source.denx.de/u-boot/custodians/u-boot-dfu into next
+  * Merge patch series "vbe: Series part D"
+  * rockchip: Provided SPL control over efuse presence
+  * rockchip: mmc: Fix a missing colon and newline
+  * mmc: rockchip: Allow clocks to be missing
+  * mmc: rockchip: Log some error returns
+  * mmc: Log the error when init fails
+  * mmc: Add more debugging for SPL
+  * mmc: Support driver model in TPL
+  * arm: Fix up a stale comment in sections.c
+  * arm: cache: Drop a stale comment
+  * armv8: Support not having separate BSS
+  * serial: Support debug UART in TPL
+  * ram: Support driver model in VPL
+  * tpl: Support numbered aliases in device tree
+  * tiny-printf: Correct return values
+  * fdtdec: Support separate BSS for all XPL builds
+  * gzip: Correct function comment for gunzip()
+  * bootstd: Add stub for bootdev_setup_for_sibling_blk()
+  * sandbox: Add missing header file
+  * Merge patch series "arm: Initial support for Analog Devices SC5xx boards"
+  * arm: SC573-EZKIT initial support
+  * arm: SC589-MINI initial support
+  * arm: SC589-EZKIT initial support
+  * arm: SC584-EZKIT initial support
+  * arm: SC594-SOM-EZLITE initial support
+  * arm: SC594-SOM-EZKIT initial support
+  * arm: SC598-SOM-EZLITE initial support
+  * arm: SC598-SOM-EZKIT initial support
+  * arm: mach-sc5xx: clean up Kconfig
+  * dt-bindings: timer: Add SC5xx Timer bindings
+  * dt-bindings: clock: Add SC5xx clock tree bindings
+  * dt-bindings: arm: Add SC5xx Series binding
+  * arm: dts: Support SC598-SOM-EZLITE
+  * arm: dts: Support SC598-SOM-EZKIT
+  * arm: dts: Support SC594-SOM-EZLITE
+  * arm: dts: Support SC594-SOM-EZKIT
+  * arm: dts: Support SC589-EZKIT
+  * arm: dts: Support SC589-MINI
+  * arm: dts: Support SC584-EZKIT
+  * arm: dts: Support SC573-EZKIT
+  * cmd: simplify CONFIG_CMD_USB_MASS_STORAGE dependencies
+  * rtc: rv3028: add support to manage VDD regulator
+  * Makefile: pass external DTB provided by make variable EXT_DTB to binman
+  * spi: davinci: Drop the preload of TX buffer before read/writes operations
+  * Add mkimage secp521r1 ECDSA curve support
+  * fs: Fix SPL build if SPL_FS_LOADER is enabled and FS_LOADER is disabled
+  * board: ti: j722s: Update Resource Management configs
+  * Merge patch series "Add Android 14 bootflow support for AM62X and AM62P board"
+  * board: ti: am62px: Add android bootflow support
+  * board: beagle: beagleplay: Add android bootflow support
+  * board: ti: am62x_evm: Add android bootflow
+  * cmd: booti: adjust the print format
+  * bootm: adjust the print format
+  * Subtree merge tag 'v6.11-dts' of dts repo [1] into dts/upstream
+  * Squashed 'dts/upstream/' changes from 20e0f0897ea2..3347eecf3408
+  * Merge patch series "env: mmc: fix use of two separate partitions with proper type GUID"
+  * env: mmc: rework mmc_env_partition_by_guid() to work with two separate partitions
+  * env: mmc: do not return an offset before the start of the partition
+  * env: mmc: refactor mmc_offset_try_partition()
+  * usb: gadget: usbhs: Add Renesas USBHS device driver
+  * bootstd: android: Add U-Boot version to cmdline
+  * dfu: define a callback function for the dfu_alt_info environment variable
+  * power: regulator: Drop regulators_enable_boot_on/off()
+  * power: regulator: Drop regulator_unset()
+  * power: regulator: Convert regulators_enable_boot_on/off() to regulator_post_probe
+  * power: regulator: Trigger probe of regulators which are always-on or boot-on
+  * Merge tag 'v2024.10-rc6' into next
+  * Merge tag 'dm-next-26sep24' of https://source.denx.de/u-boot/custodians/u-boot-dm into next
+  * binman: Make a start on an iMX8 test
+  * binman: Allow image_pos to be None when writing symbols
+  * binman: Unwind the end-at-4gb special-case a little
+  * binman: Provide a way to set the symbol base address
+  * binman: Add minor improvements to symbol-writing
+  * binman: Adjust naming for reading symbols
+  * binman: fit: Refine handling of devicetrees for OF_UPSTREAM
+  * binman: fit: Set the image_pos attributes only once
+  * binman: fit: Avoid assuming that a FIT member is a section
+  * binman: Update fdt-list-dir to use the provided directory
+  * binman: Avoid setting the image_pos attribute directly
+  * binman: Tidy up comments and pylint warnings in fit
+  * binman: Tidy up comments for Entry.GetEntryArgsOrProps()
+  * binman: Correct the comment for fdtgrep
+  * binman: Fix up test coverage for mkeficapsule
+  * buildman: Allow skipping the dtc build
+  * buildman: Retry the build for current source
+  * power: regulator: Consistently return -ENOSYS when ops is unimplemented
+  * power: regulator: Do not call set_suspend_value with -ENODATA
+  * Merge tag 'u-boot-imx-next-20240925' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx into next
+  * net: fec_mxc: Skip recv packet process when fec is halted
+  * net: fec_mxc: Fix clk_ref rate on iMX93
+  * arm64: dts: imx8m: Always name the generated fitImage u-boot.itb
+  * Merge patch series "Miscellaneous fixes"
+  * cmd: pxe: CMD_PXE implies CMD_TFTPBOOT
+  * common: update: UPDATE_COMMON implies CMD_TFTPBOOT
+  * test/py: test_efi_loader: add HTTP (wget) test for the EFI loader
+  * test/py: test_efi_loader: add missing dependency on cmd_tftpboot
+  * test/py: net_boot: fix comment
+  * net: fec_mxc_init(): do not ignore return status of fec_open()
+  * net: wget: allow EFI boot
+  * net: ftgmac100: depend on NET
+  * net: phy: ncsi: depend on NET
+  * net: wget: removed unused function wget_success()
+  * net: fm: call dtsec_init_phy() only when it is defined
+  * arm: omap2: add missing #include <netdev.h>
+  * at91: rename mem_init() to at91_mem_init()
+  * flash: prefix error codes with FL_
+  * buildman/toolchain.py: do not set CROSS_COMPILE for sandbox
+  * test/py/tests/test_bootstage.py: Combine stash/unstash tests
+  * spl: ram: hide SPL_RAM_SUPPORT
+  * Merge tag 'xilinx-for-v2025.01-rc1' of https://source.denx.de/u-boot/custodians/u-boot-microblaze into next
+  * mmc: Poll CD in case cyclic framework is enabled
+  * Merge patch series "lmb: rework logic to validate load address for network commands"
+  * cmd: sf: prevent overwriting the reserved memory
+  * wget: rework the logic to validate the load address
+  * tftp: rework the logic to validate the load address
+  * xilinx: zynqmp: Add bootmenu support
+  * arm64: zynqmp: Rename ina226-vccint-io-bram-ps nodes
+  * arm64: zynqmp: Use generic spi@ name in zcu111-revA
+  * arm64: zynqmp: Define phy-mode in zcu1275-revB
+  * arm64: zynqmp: Align mini-qspi DT with dt-schema
+  * arm64: zynqmp: fix i2c mux bus description for m-a2197 platforms
+  * arm64: zynqmp: Fix comment style around gpio line-names
+  * arm64: zynqmp: Fix gpio-line-name size for m-a2197 platforms
+  * xilinx: Fix axi and mmc node names in mini configuration
+  * arm64: zynqmp: Align gpio hogs with dt-schema
+  * arm64: zynqmp: Fix status property for m-a2197 boards
+  * board: xilinx: Remove conditional check for Microblaze
+  * arm64: zynqmp: Define only one revision in zcu106-rev1.0
+  * mmc: zynq_sdhci: Remove device_is_compatible() function
+  * net: gem: Remove undocumented is-internal-pcspma dt flag
+  * xilinx: Enable SIMPLE_PM_BUS
+  * arm64: zynqmp: Remove overlays and add new dtb entries for ZynqMP
+  * kbuild: cherry-pick kbuild fdtoverlay changes from linux
+  * arm64: zynqmp: Add missing vc7_xin fixed clock to sc-vpk180-revA
+  * arm: zynqmp: Enable non-invasive CCI-400 PMU debug
+  * zynqmp: Disable secure access for boot devices
+  * arm64: zynqmp: Add u-boot command to boot into recovery image
+  * xilinx: versal-net: fix no previous prototype for function warning.
+  * mtd: spi-nor: scale up timeout for full-chip erase
+  * Merge tag 'u-boot-imx-next-20240919' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx into next
+  * Merge tag 'fwu-next-19092024' of https://source.denx.de/u-boot/custodians/u-boot-tpm into next
+  * fwu: print a message if empty capsule checks fail
+  * fwu: do not allow capsule processing on exceeding Trial Counter threshold
+  * fwu: add dependency checks for selecting FWU metadata version
+  * fwu: check all images for transitioning out of Trial State
+  * fwu: v1: do a version check for the metadata
+  * fwu: v2: try reading both copies of metadata
+  * imx6q-lxr: Add board support
+  * imx93_evk: add back Low drive mode ddr timing file
+  * imx93_evk: Remove CONFIG_IMX9_LOW_DRIVE_MODE and ld defconfig
+  * imx93_evk: spl: update pmic settings
+  * imx9: trdc: introduce trdc_mbc_blk_num
+  * imx9: trdc: cleanup code
+  * imx: Generalize fixup_thermal_trips
+  * imx93: Add Low performance parts 9302/9301 support
+  * imx9: soc: Disable cpu1 for variants that only has one A55 core
+  * imx: Generalize disable_cpu_nodes
+  * imx8m: soc: Drop disable_pmu_cpu_nodes
+  * imx9: Add 233Mhz DDR PLL frequency
+  * imx9: soc: Mask the wdog reset in src by default on i.mx9
+  * imx9: clock: Update clock init function and sequence
+  * imx9: soc: Add function to get target voltage mode
+  * imx9: soc: Print ELE information
+  * imx9: soc: Change second Ethernet MAC fuse layout
+  * imx9: soc: Change FSB directly access to fuse API
+  * imx9: soc: Print UID in big endian format for EL2GO
+  * imx9: soc: imx9: soc: Align UID endianness with ROM
+  * imx9: soc: Configure TRDC for M33 TCM access
+  * imx9: soc: wait ssar when power on power domain
+  * Merge patch series "Fix various bugs"
+  * test: mbr: Drop a duplicate test
+  * test: mbr: Use RAM for the buffers
+  * test: mbr: Use a constant for the block size
+  * test: mbr: Unmap the buffers after use
+  * cmd: Fix memory-mapping in cmp command
+  * read: Tidy up use of map_sysmem() in the read command
+  * mmc: Use map_sysmem() with buffers in the mmc command
+  * sandbox: Implement reference counting for address mapping
+  * sandbox: Add some debugging to pci_io
+  * sandbox: Unmap old tags
+  * sandbox: Update cpu to use logging
+  * sandbox: Change the range used for memory-mapping tags
+  * test: mbr: Adjust test to drop 0x
+  * test: mbr: Adjust test to use lower-case hex
+  * dm: usb: Deal with USB keyboard persisting across tests
+  * usb: Add DEV_FLAGS_DM to stdio for USB keyboard
+  * log: Add a new log category for the console
+  * usb: Drop old non-DM code
+  * bootstd: Create a function to reset USB
+  * scripts: Update pylint.base
+  * test/py: Fix some pylint warnings in test_ut.py
+  * nvmxip: Avoid probing on boot
+  * nvmxip: Drop the message on probe
+  * cmd: osd: Depend on OSD
+  * cmd: mmc: Allow using partition name in mmc erase command
+  * mmc: Hide mmc speed command under mmc command
+  * Merge patch series "Arm: npcm: modify npcm8xx boot setting"
+  * pinctrl: npcm8xx: clear all gpio events
+  * configs: arbel_evb: change env offset and boot address
+  * board: arbel: correct the dram bank size
+  * drivers/crypto: aspeed: Add Caliptra SHA ACC support
+  * Merge tag 'v2024.10-rc5' into next
+  * Merge patch series "Bump new hush commits and fix old hush test behavior"
+  * cli: modern_hush: Add upstream commits up to 13 July 2024
+  * test: hush: dollar: fix bugous behavior
+  * Merge tag 'efi-next-20241024' of https://source.denx.de/u-boot/custodians/u-boot-efi into next
+  * efi_loader: Put back copyright message
+  * efi_loader: Use puts() in cout so that console recording works
+  * test: lib/uuid: add tests for UUID version/variant bits
+  * test: lib/uuid: add unit tests for dynamic UUIDs
+  * tools: mkeficapsule: support generating dynamic GUIDs
+  * tools: mkeficapsule: use u-boot UUID library
+  * include: export uuid.h
+  * lib: uuid: supporting building as part of host tools
+  * sandbox: switch to dynamic UUIDs
+  * doc: uefi: document dynamic UUID generation
+  * efi: add a helper to generate dynamic UUIDs
+  * lib: uuid: add UUID v5 support
+  * efi: define struct efi_guid
+  * Kconfig: clean up the efi configuration status
+  * efi_loader: return the correct error in efi_bootmgr_release_uridp()
+  * efi_loader: rename efi_bootmgr_image_return_notify
+  * efi_loader: shorten efi_bootmgr_release_uridp_resource()
+  * Merge branch 'next' of https://source.denx.de/u-boot/custodians/u-boot-riscv into next
+  * Merge tag 'u-boot-imx-next-20240911' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx into next
+  * pwm: imx: Don't drop the enable bit once set
+  * configs: venice: enable DM_RNG
+  * ARM: imx: Enable MMU and dcache very early on i.MX8M
+  * configs: ibex-ast2700: Enable DRAM and timer driver
+  * ram: ast2700: Add DRAM controller initialization
+  * board: ibex_ast2700: Add FMC header support
+  * timer: Add AST2700 IBEX timer support
+  * riscv: Add AST2700 SoC initial platform support
+  * riscv: u-boot-spl.lds: Remove _image_binary_end alignment
+  * riscv: Make stack size shift configurable
+  * riscv: Make A ISA extension selectable
+  * driver: net: Add Aspeed AST2700 MDIO support
+  * net: ftgmac100: Add Aspeed AST2700 support
+  * net: ftgmac100: Modify desc. size to cache line
+  * net: ftgmac100: Fixed NC-SI PHY device cannot get
+  * net: ftgmac100: Fixed the cache coherency issues of rx memory
+  * riscv: dts: sophgo: Replace device clocks with real clocks.
+  * configs: milkv_duo: Enable clock controller
+  * clk: sophgo: cv1800b: Add clock controller driver for cv1800b SoC
+  * dt-bindings: clk: import header for clock controller of sophgo CV1800B
+  * Merge patch series "phycore-am62/4: Add more boot sources"
+  * configs: phycore_am62x_*_defconfig: Set PHYTEC as Manufacturer
+  * configs: phycore_am62x_a53_defconfig: Fix CONFIG_ENV_SIZE
+  * configs: Add phycore_am62x_r5_usbdfu_defconfig
+  * configs: phycore_am62x_a53_defconfig: Merge am62x_a53_usbdfu.config
+  * configs: phycore_am64x_a53_defconfig: Make BOOTCMD generic
+  * configs: phycore_am62x_a53_defconfig: Make BOOTCMD generic
+  * board: phytec: phycore_am64x: Add Network/SPI Boot
+  * board: phytec: phycore_am62x: Add Network/SPI Boot
+  * include: env: phytec: Add K3 boot logic for OSPI/QSPI flashes
+  * include: net: phytec: Add K3 network boot logic
+  * include: env: phytec: Add raucinit to k3_mmc environment
+  * include: env: phytec: k3_mmc: Rename variables
+  * configs: phycore_am64x_a53_defconfig: Enable CONFIG_OF_BOARD_SETUP
+  * spl: spl_load: fix comparison between negative error code and unsigned size
+  * test/py: spi: Set the expected error message
+  * treewide: drop redundant "type string" for SYS_SOC and friends
+  * arm: Remove ethernut5 board
+  * net: guard call to tftp_start() with IS_ENABLED(CONFIG_CMD_TFTPBOOT)
+  * Merge branch 'next' of https://source.denx.de/u-boot/custodians/u-boot-usb into next
+  * Merge branch 'qcom-next' of https://gitlab.denx.de/u-boot/custodians/u-boot-snapdragon into next
+  * phy: test: Implement sandbox PHY .set_mode and DM test
+  * phy: rcar: Split init and set_mode operations
+  * phy: Extend generic_setup_phy() with PHY mode and submode
+  * buildman: Support building within a Python venv
+  * board/qualcomm: add debug config fragments for some SoCs
+  * doc: board/qualcomm: document rb3gen2 building/flashing
+  * configs: add qcm6490_defconfig
+  * qcom_defconfig: enable SC7280 clocks
+  * iommu: qcom-smmu: add sc7280-smmu-500 compatible
+  * dts: qcs6490-rb3gen2-u-boot: USB host mode
+  * dts: qcs6490-rb3gen2-u-boot: add override dtsi
+  * clk/qcom: add initial clock driver for sc7280
+  * regulator: qcom-rpmh-regulator: add support for PM8550 & related regulators
+  * soc: qcom: rpmh-rsc: add back __tcs_set_trigger() for SM8550/SM8650
+  * qcom_defconfig: bump CONFIG_NR_DRAM_BANKS
+  * soc: qcom: cmd-db: map cmd-db region
+  * soc: qcom: cmd-db: use strncmp() instead of memcmp()
+  * armv8: mmu: add a way to map additional regions
+  * mach-snapdragon: set loadaddr
+  * mach-snapdragon: populate fallback FDT
+  * mach-snapdragon: allocate fastboot buffer dynamically
+  * mach-snapdragon: set serial number
+  * mach-snapdragon: use 1MiB for get_page_table_size()
+  * mach-snapdragon: parse memory ourselves
+  * mach-snapdragon: refactor board_fdt_blob_setup()
+  * regulator: fixed: fix regulator-fixed-clock
+  * power: regulator: tps6287x: Add driver for TPS6287x step down convertors
+  * mmc: consider cd-gpios in Synopsys DesignWare driver
+  * mmc: msm_sdhci: program core_vendor_spec
+  * mmc: Change the frequency to MMC_HS_52 when selecting hs400
+  * mmc: sdhci-cadence: Add support for Cadence sdmmc v6
+  * Merge patch series "provide names for emmc hardware partitions"
+  * venice: show emmc boot hardware partition
+  * mmc: allow use of hardware partition names for mmc partconf
+  * mmc: use an enumerated type to represent PARTITION_CONFIG fields
+  * Merge patch series "Make LMB memory map global and persistent"
+  * lmb: add logic to print lmb flag strings
+  * stm32mp: compute ram_top based on the optee base address
+  * stm32mp: allow calling optee_get_reserved_memory() from U-Boot
+  * zynq: lmb: do not add to lmb map before relocation
+  * sandbox: iommu: remove lmb allocation in the driver
+  * sandbox: spl: enable lmb config for SPL
+  * spl: sandbox: initialise the ram banksize in spl
+  * spl: call spl_board_init() at the end of the spl init sequence
+  * sandbox: move the TCG event log to the start of ram memory
+  * lmb: remove the unused board_lmb_reserve() function
+  * lmb: do away with arch_lmb_reserve()
+  * ppc: lmb: move arch specific lmb reservations to arch_misc_init()
+  * lmb: init: initialise the lmb data structures during board init
+  * lmb: bootm: remove superfluous lmb stub functions
+  * lmb: remove lmb_init_and_reserve_range() function
+  * lmb: remove the lmb_init_and_reserve() function
+  * lmb: reserve common areas during board init
+  * lmb: introduce a function to add memory to the lmb memory map
+  * lmb: allow lmb module to be used in SPL
+  * lmb: config: add lmb config symbols for SPL
+  * lmb: remove config symbols used for lmb region count
+  * lmb: allow for resizing lmb regions
+  * lmb: make LMB memory map persistent and global
+  * lmb: use the BIT macro for lmb flags
+  * lmb: staticize __lmb_alloc_base()
+  * lmb: remove the unused lmb_is_reserved() function
+  * alist: add a helper to check if the list is full
+  * Merge patch series "net: dwc_eth_qos: Add glue driver for Intel MAC"
+  * net: dwc_eth_qos: Add glue driver for Intel MAC
+  * net: dwc_eth_qos: Implement bind() for PCI devices
+  * net: dwc_eth_qos: Adapt probe() for PCI devices
+  * net: dwc_eth_qos: Fix header to be self-contained
+  * x86: provide mb() macro
+  * Merge tag 'u-boot-imx-next-20240902' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx into next
+  * Merge tag 'u-boot-amlogic-next-20240902' of https://source.denx.de/u-boot/custodians/u-boot-amlogic into next
+  * Merge tag 'v2024.10-rc4' into next
+  * ARM: imx: Wrap i.MX config options in MACH_IMX
+  * ARM: imx: Make PLL settings configurable at board level
+  * imx: Remove CFG_MXC_USB_PORTSC
+  * mx5: Remove CFG_MXC_USB_PORT
+  * usb: ehci-mx5: Add a default for CFG_MXC_USB_PORTSC
+  * imx: Remove CFG_MXC_USB_FLAGS
+  * configs: verdin-imx8m[mp]: set CONFIG_SPL_LOAD_FIT_ADDRESS
+  * gpio: mxc_gpio: fix reading state of GPIO pins in output mode
+  * Merge patch series "Add support for Ethernet Boot on SK-AM62"
+  * arm64: dts: ti: k3-am62x-sk-common: Add bootph-all property in phy_gmii_sel node
+  * arm: dts: k3-am625-r5-sk: Enable DM services for main_pktdma
+  * configs: am62: Enable configs required for Ethboot
+  * configs: am62: Add configs for enabling ETHBOOT in R5SPL
+  * arm: mach-k3: am62x: am625_init: Probe AM65 CPSW NUSS
+  * dma: ti: k3-udma: Add support for native configuration of chan/flow
+  * soc: ti: k3-navss-ringacc: Fix reconfiguration of qmode API
+  * soc: ti: k3-navss-ringacc: Fix reset ring API
+  * soc: ti: k3-navss-ringacc: Initialize base address of ring cfg registers
+  * firmware: ti_sci: Add No-OP for "RX_FL_CFG"
+  * common: spl: spl: Init DRAM size in R5/A53 SPL
+  * lib: crypto: fix ASYMMETRIC_KEY_TYPE dependency
+  * list: use list_count_nodes() to count list entries
+  * mx6slevk: Convert to OF_UPSTREAM
+  * mx6slevk: Keep a single defconfig
+  * mx6slevk: Fix the boot device number
+  * mx6slevk: Convert to watchdog driver model
+  * board: phytec: phycore_imx8mp: Add mtd spi partitions
+  * configs: phycore-imx8mp_defconfig: Enable SPI NOR flash support
+  * imx: ele_ahab: Add HUK derivation support
+  * bootstage: Fix unstash of records from SPL
+  * mtd: rawnand: meson: read/write access for boot ROM pages
+  * mtd: rawnand: meson: refactor use of 'meson_nfc_cmd_access()'
+  * mtd: rawnand: nand_base: support for 'NAND_IS_BOOT_MEDIUM' flag
+  * mmc: fix signed vs unsigned compare in read check in _spl_load()
+  * gpio: Add G7 Aspeed gpio controller driver
+  * tools/scripts/Kconfig: Update references from kconfig-language.txt to rst
+  * dm: core: Make SPL_DM_SEQ_ALIAS select SPL_STRTO
+  * arm: dts: nuvoton: add dts support for npcm845 yosemite4
+  * lib: move phdr increment to for loop heading
+  * Merge patch series "dm: core: Avoid multiple calls to fdt_parent_offset()"
+  * timer: npcm: Change counter source
+  * dm: core: regmap: Avoid multiple calls to ofnode_get_parent()
+  * dm: core: ofnode: Avoid multiple calls to ofnode_get_parent()
+  * dm: core: fdtaddr: Avoid multiple calls to fdt_parent_offset()
+  * gpio: npcm: Add SGPIO support for Nuvoton NPCM SoCs
+  * test/py: spi: Add tests for SPI flash device
+  * cmd: bind: Use device sequence instead for driver bind/unbind
+  * dm: core: Show device sequence instead in dm_dump_tree()
+  * mtd: nand: raw: omap_gpmc: Check return value of gpmc_nand_init
+  * omap3: omap3evm: Migrate to OF_UPSTREAM
+  * sandbox: Fix pinmux warnings with non-test devicetrees
+  * ata: sata_rescan must scan for block devices
+  * pci: mediatek: add support for upstream split PCIe node
+  * remoteproc: uclass: Modify uc_pdata->name to use combination of device name and device's parent name
+  * ata: dwc_ahsata: create boot device
+  * Merge patch series "bootstd: Try again to resolve infinite-loop bug"
+  * Merge patch series "arch: arm: dts: ti: Add missing fss range"
+  * bootstd: Make bootdev_next_prio() continue after failure
+  * Revert "bootdev: avoid infinite probe loop"
+  * arch: arm: dts: k3-j721e-r5-sk: Add missing fss range
+  * arch: arm: dts: k3-j721e-r5-evm: Add missing fss range
+  * arch: arm: dts: k3-j7200-r5-evm: Add missing fss range
+  * arch: arm: dts: k3-am69-r5-sk: Add missing fss range
+  * arch: arm: dts: k3-j784s4-r5-evm: Add missing fss range
+  * Merge patch series "Tidy up console recording in tests"
+  * test: Tidy up checking for console end
+  * test: dm: Use UTF_CONSOLE in tests
+  * doc: Add a few notes about how to use console checking
+  * test: Use UTF_CONSOLE in remaining tests
+  * test: cmd: Drop unnecessary console_record_reset_enable()
+  * test: log: Use UTF_CONSOLE in tests
+  * test: cmd: Use UTF_CONSOLE in tests
+  * test: hush: Use UTF_CONSOLE in tests
+  * test: fdt: Move common code into the setup functions
+  * test: fdt: Check internal-function return values
+  * test: boot: Use UTF_CONSOLE in tests
+  * test: bloblist: Use UTF_CONSOLE in tests
+  * test: Update NAND test to avoid extra macros
+  * mmc: Drop the blank line before accesses
+  * test: Rename UTF_CONSOLE_REC to UTF_CONSOLE
+  * test: Drop the blank line before test macros
+  * test: Rename unit-test flags
+  * test: Fail when an empty line is expected but not present
+  * buildman: Make test_process_limit handle time.monotonic()
+  * Merge patch series "global_data: Reduce size of struct global_data"
+  * doc: Add some guidelines about global data
+  * doc: Move generic-board documentation into rst
+  * global_data: Remove environment members if not used
+  * global_data: Remove jump table in SPL
+  * global_data: Move pointer members together
+  * global_data: Move ulong fields together
+  * global_data: Put phys_addr fields near the top
+  * global_data: Move env_addr field higher
+  * global_data: Move baud_rate field lower
+  * global_data: Reduce size of early-malloc vars
+  * global_data: Drop fb_base
+  * global_data: log: Reorder and shrink fields
+  * video: Avoid setting global_data fb_base in video setup
+  * global_data: Reduce the size of mon_len
+  * video: Avoid setting global_data fb_base from SPL handoff
+  * global_data: Reduce the size of bus_clk and mem_clk
+  * zynqmp: Avoid setting the framebuffer address
+  * global_data: Collect common fields at the top
+  * arm: ronetix: Avoid accessing global_data fb_base
+  * global_data: Drop spl_handoff
+  * arm: friendlyarm: Avoid accessing global_data fb_base
+  * board_f: Move new_bloblist to boardf
+  * video: mxs: Avoid setting global_data fb_base
+  * board_f: Move new_bootstage to boardf
+  * board_f: Move fdt_size to board
+  * board_f: Add a new struct to hold pre-relocation info
+  * global_data: Use less space for environment fields
+  * global_data: Drop pci_bootdelay
+  * global_data: Drop global_data hose
+  * global_data: Remove pci_ram_top
+  * global_data: Convert have_console into a flag
+  * video: mxc: Avoid setting global_data fb_base
+  * video: Add a function to obtain the framebuffer address
+  * x86: Drop use of global_data fb_base
+  * global_data: Move pci_clk to m68k and powerpc
+  * Merge patch series "test/overlay: Make this depend on SANDBOX"
+  * test/cmd: Move wget test to under a sandbox guard
+  * test/boot: Make BOOTSTD tests depend on UT_BOOTSTD
+  * test/overlay: Make this depend on SANDBOX
+  * Merge patch series "spl: mmc: Some tweaks for SPL, particularly with MMC"
+  * blk: Correct comment for blk_get_devnum_by_uclass_idname()
+  * spl: Create a function to init spl_load_info
+  * spl: mmc: Adjust args of spl_mmc_find_device()
+  * spl: Remove remaining #ifdef in spl_parse_image_header()
+  * spl: Use unified inline functions for spl_load_info
+  * spl: mmc: Handle error codes consistently
+  * spl: Remove some #ifdefs in spl_parse_image_header()
+  * spl: mmc: Try to clean up raw-mode options
+  * spl: mmc: Drop checks for CONFIG_SPL_LIBCOMMON_SUPPORT
+  * spl: Correct use of CMD_BOOTI and CMD_BOOTZ
+  * log: Avoid including function names by default
+  * rockchip: Move the default timer init to a common file
+  * mmc: Use logging instead of pr_err()
+  * mmc: Use logging instead of printf()
+  * Merge tag 'u-boot-imx-next-20240823' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx into next
+  * ARM: imx: Enable cat and xxd commands on Data Modul i.MX8M Mini/Plus eDM SBC
+  * ARM: imx: Use USB SDPS as fallback option on Data Modul i.MX8M Plus eDM SBC
+  * configs: phycore-imx8mp_defconfig: Enabled bootaux command
+  * board: phytec: phycore_imx8mp: Add mcore support
+  * mx6: Expand bmode to support ecspi3 boot
+  * gw_ventana: Remove unneeded comments
+  * tqma6_mba6: Remove UART board code
+  * tqma6_mba6: Remove unused defines
+  * tqma6: Remove non-DM board code
+  * imx: imx9: Set correct critical temperature
+  * config: Add 'update_bootimg' command to update flash.bin on Phytec's imx8mm
+  * colibri-imx8x: enable i.MX specific SNVS configuration
+  * colibri-imx8x: enable i.MX specific BOOTAUX
+  * apalis-imx8: enable i.MX specific BOOTAUX
+  * board: apalis-imx8: add reset code
+  * Merge branch 'master' of https://source.denx.de/u-boot/custodians/u-boot-samsung into next
+  * Merge tag 'u-boot-dfu-next-20240820' of https://source.denx.de/u-boot/custodians/u-boot-dfu into next
+  * usb: gadget: udc: Fix duplicate uclass name
+  * Merge tag 'v2024.10-rc3' into next
+  * Merge patch series "clk: mediatek: mt7622: clk migration for OF_UPSTREAM"
+  * clk: mediatek: mt7622: add missing A1/2SYS clock ID
+  * clk: mediatek: mt7622: add missing clock PERIBUS_SEL clock
+  * clk: mediatek: mt7622: add missing clock PERI_UART4_PD
+  * clk: mediatek: mt7622: add missing clock MUX1_SEL
+  * clk: mediatek: mt7622: add missing clock define for MAIN_CORE_EN
+  * clk: mediatek: mt7622: move INFRA_TRNG to the bottom
+  * clk: mediatek: mt7622: rename AUDIO_AWB3 to AUDIO_AWB2
+  * clk: mediatek: mt7622: fix broken peri_cgs clk with XTAL parents
+  * Merge patch series "clk: mediatek: mt7986: clk migration for OF_UPSTREAM"
+  * clk: mediatek: mt7986: rename CK to CLK
+  * clk: mediatek: mt7986: convert to unified infracfg gates + muxes
+  * clk: mediatek: mt7986: replace infracfg ID with upstream linux
+  * clk: mediatek: mt7986: move INFRA_TRNG_CK to the bottom of the list
+  * clk: mediatek: mt7986: comment out CK_TOP_A_TUNER as not used
+  * clk: mediatek: mt7986: drop 1/1 spurious factor for topckgen
+  * clk: mediatek: mt7986: reorder TOPCKGEN factor ID
+  * clk: mediatek: mt7986: rename TOPCKGEN factor clock to upstream naming
+  * clk: mediatek: mt7986: fix typo for infra_i2c0_ck
+  * clk: mediatek: mt7986: add missing entry for IPCIE_PIPE_CK infra gate
+  * clk: mediatek: mt7986: drop 1/1 infracfg spurious factor
+  * clk: mediatek: mt7986: fix wrong parent for INFRA_ADC_26M_CK
+  * clk: mediatek: mt7986: rename 66M_MCK to SYSAXI_D2
+  * clk: mediatek: mt7986: rename CB_CKSQ_40M to TOP_XTAL
+  * clk: mediatek: mt7986: fix wrong shift for PCIe clocks
+  * Merge patch series "clk: mediatek: mt7988: clk migration for OF_UPSTREAM"
+  * clk: mediatek: mt7988: rename CK to CLK
+  * clk: mediatek: mt7988: convert to unified infracfg gates + muxes
+  * clk: mediatek: mt7988: replace clock ID with upstream linux
+  * clk: mediatek: mt7988: comment out infracfg clk not defined
+  * clk: mediatek: mt7988: drop 1/1 spurious factor for topckgen
+  * clk: mediatek: mt7988: reorder TOPCKGEN factor ID
+  * clk: mediatek: mt7988: rename TOPCKGEN factor clock to upstream naming
+  * clk: mediatek: mt7988: drop 1/1 infracfg spurious factor
+  * clk: mediatek: mt7988: fix wrong parent for INFRA_PCIE_PERI_26M_CK_P2
+  * clk: mediatek: mt7988: move INFRA_PCIE_PERI_26M_CK_Px clock at top
+  * clk: mediatek: mt7988: rename TOP_CK_NPU_SEL_CM_TOPS_SEL to TOP_NPU_SEL
+  * clk: mediatek: mt7988: rename TOP_DA_SELM_XTAL_SEL to TOP_DA_SEL
+  * clk: mediatek: mt7988: rename CB_CKSQ_40M to TOP_XTAL
+  * Merge patch series "clk: mediatek: mt7981: clk migration for OF_UPSTREAM"
+  * clk: mediatek: mt7981: rename CK to CLK
+  * clk: mediatek: mt7981: convert to unified infracfg gates + muxes
+  * clk: mediatek: mt7981: fix support for pwm3 clock
+  * clk: mediatek: mt7981: replace infracfg ID with upstream linux
+  * clk: mediatek: mt7981: drop 1/1 spurious factor
+  * clk: mediatek: mt7981: implement sgmii0/1 clock
+  * clk: mediatek: mt7981: fix wrong parent list for INFRA_PWM1_SEL mux
+  * clk: mediatek: mt7981: fix wrong parent for TOP_FAUD clock
+  * clk: mediatek: mt7981: swap wrong clock-names for spi nodes
+  * clk: mediatek: mt7981: add missing clock for spi1 node
+  * clk: mediatek: mt7981: fix wrong clock definition for spi2
+  * clk: mediatek: mt7981: fix wrong mux width for pwm2 and pwm1 clock
+  * clk: mediatek: mt7981: fix typo for infra_i2c0_ck
+  * clk: mediatek: mt7981: add missing clock for infra_ipcie_pipe
+  * Merge patch series "clk: mediatek: mt7623: clk migration for OF_UPSTREAM"
+  * clk: mediatek: mt7623: remap peri clock ID and add MUX
+  * clk: mediatek: mt7623: remap apmixedsys clock ID
+  * clk: mediatek: mt7623: define id_offs_map and import clk ID from upstream
+  * clk: mediatek: mt7623: split clk tree to dedicated topckgen and apmixed
+  * clk: mediatek: mt7623: fix broken peri_cgs clk with XTAL parents
+  * doc: samsung: Mention enabled eMMC in E850-96 board doc
+  * configs: e850-96: Enable MMC
+  * arm: dts: exynos: Remove outdated DW MMC properties in all Exynos dts
+  * mmc: exynos_dw_mmc: Improve coding style
+  * mmc: exynos_dw_mmc: Use dev->name as driver's displayed name
+  * mmc: exynos_dw_mmc: Don't call dwmci_setup_cfg() after add_dwmci()
+  * mmc: exynos_dw_mmc: Pull all init code into probe function
+  * mmc: exynos_dw_mmc: Add support for ARM64 Exynos chips
+  * mmc: exynos_dw_mmc: Set requested freq in get_mmc_clk() callback
+  * mmc: exynos_dw_mmc: Read and use DDR timing when available
+  * mmc: exynos_dw_mmc: Move quirks from struct dwmci_host to chip data
+  * mmc: exynos_dw_mmc: Read common clock-frequency property
+  * mmc: exynos_dw_mmc: Read common bus-width property
+  * mmc: exynos_dw_mmc: Refactor fixed CIU clock divider
+  * mmc: exynos_dw_mmc: Abstract CLKSEL register
+  * mmc: exynos_dw_mmc: Read upstream SDR timing properties
+  * mmc: exynos_dw_mmc: Convert to use livetree API
+  * mmc: exynos_dw_mmc: Use .of_to_plat for device tree parsing
+  * mmc: exynos_dw_mmc: Obtain and use CIU clock via CCF API
+  * mmc: exynos_dw_mmc: Don't call pinmux functions on ARM64 chips
+  * mmc: exynos_dw_mmc: Fix getting private data in exynos_dwmci_board_init()
+  * mmc: exynos_dw_mmc: Fix obtaining the base address of controller
+  * arm: exynos: Add header guard for dwmmc.h
+  * dt-bindings: exynos: Update bindings doc for DW MMC controller
+  * arm: dts: exynos: Add upstream DW MMC properties to all Exynos dts
+  * mmc: dw_mmc: Improve coding style
+  * mmc: dw_mmc: Fix kernel-doc comments in dwmmc.h
+  * mmc: dw_mmc: Replace fifoth_val property with fifo-depth
+  * mmc: dw_mmc: Add support for 64-bit IDMAC
+  * mmc: dw_mmc: Improve 32-bit IDMAC descriptor namings
+  * mmc: dw_mmc: Extract setting the DMA descriptor into a separate routine
+  * mmc: dw_mmc: Extract DMA transfer handling code into a separate routine
+  * mmc: dw_mmc: Extract FIFO data transfer into a separate routine
+  * mmc: dw_mmc: Extract divider update to a separate function
+  * mmc: dw_mmc: Extract FIFO init into a separate routine
+  * mmc: dw_mmc: Extract waiting for data busy into a separate routine
+  * mmc: dw_mmc: Move struct idmac to dw_mmc.c
+  * mmc: dw_mmc: Remove unused version field from struct dwmci_host
+  * ext4: Fix zalloc()
+  * compiler: Ensure __builtin_*_overflow() support
+  * ext4: Fix integer overflow in ext4fs_read_symlink()
+  * squashfs: Fix heap corruption in sqfs_search_dir()
+  * squashfs: Fix stack overflow while symlink resolving
+  * squashfs: Check sqfs_find_inode() return value
+  * squashfs: Fix integer overflow in sqfs_inode_size()
+  * squashfs: Fix integer overflow in sqfs_resolve_symlink()
+  * dlmalloc: Make sure allocation size is within malloc area
+  * dlmalloc: Fix integer overflow in sbrk()
+  * dlmalloc: Fix integer overflow in request2size()
+  * x86: Fix ptrdiff_t for x86_64
+  * bootstage: Fix out-of-bounds read in reloc_bootstage()
+  * ext4: Improve feature checking
+  * lib: elf: Fix bootelf -p crash issue
+  * arm: dts: keystone: Move to OF_UPSTREAM
+  * pinmux: generic: Use ENOENT instead of ENOSYS
+  * env: remove vars that are not in default env
+  * sandbox: fix wget test failure after fixing wget issue
+  * sandbox: Enable wget command
+  * cmd: led: fix led command usage for the LED_SW_BLINK enabled case
+  * spi: soft_spi: Parse cs-gpios only if num-chipselects is not <0>
+  * spi: soft_spi: fix miso gpio property name
+  * Merge tag 'i2c-dm-updates-for-v2024-10-next' of https://source.denx.de/u-boot/custodians/u-boot-i2c into next
+  * i2c: Remove CFG_SYS_I2C_DIRECT_BUS
+  * i2c: Remove CFG_SYS_I2C_MAX_HOPS
+  * i2c: Drop i2c_get_bus_num_fdt() and i2c_reset_port_fdt()
+  * i2c: Drop CFG_SYS_MAX_I2C_BUS
+  * i2c: Remove I2C_GET_BUS()
+  * i2c: Remove I2C_SET_BUS()
+  * octeon: Drop OCTEON_I2C_FDT dead code
+  * i2c: Drop reference to SYS_I2C_INIT_BOARD
+  * fsl: mxc: Drop legacy I2c
+  * date: Drop the legacy I2C code
+  * rtc: Drop CFG_SYS_RTC_BUS_NUM
+  * MPC837XERDB: ethernut5: work_92105: Drop CMD_DATE
+  * mx28 / mx51: Drop CMD_DATE
+  * armv8: ls2085a: Drop CMD_DATE
+  * mips: malta: Drop CMD_DATE
+  * i2c: Remove CFG_I2C_MULTI_BUS
+  * i2c: Remove IC2_xxx enum
+  * i2c: Remove board_i2c_init()
+  * Merge patch series "Universal Payload initial series"
+  * upl: Add an end-to-end test
+  * sandbox: Add an SPL loader for UPL
+  * sandbox: Add a flag to enable UPL
+  * upl: Add initial documentation
+  * sandbox_vpl: Enable Universal Payload
+  * upl: Plumb in universal payload to the init process
+  * spl: Plumb in the Universal Payload handoff
+  * spl: Set SPL_FIT_FOUND for full FIT also
+  * upl: Add support for Universal Payload in SPL
+  * upl: Add a command
+  * upl: Add basic tests
+  * upl: Add support for writing a upl handoff
+  * upl: Add support for reading a upl handoff
+  * sandbox: Set up global_data earlier
+  * sandbox: Add ELF file to VPL u-boot.img
+  * sandbox: Return error code from read/write/seek
+  * sandbox: fdt: Avoid overwriting an existing fdt
+  * fdt: Don't overwrite bloblist devicetree
+  * test: Move some SPL-loading test-code into sandbox common
+  * sandbox: Fix a comment in os_find_u_boot()
+  * sandbox: Use const in os_jump_to_file()
+  * Merge tag 'i2cupdates-for-v2024-10-next' of https://source.denx.de/u-boot/custodians/u-boot-i2c into next
+  * board: vining_2000: convert to DM_I2C
+  * board: cm_fx6: convert to DM_I2C
+  * board: vf610twr: convert to DM_I2C
+  * board: novena: convert to DM_I2C
+  * board: rut: convert to DM_I2C
+  * board: sl50: convert to DM_I2C
+  * board: igep003x: convert to DM_I2C
+  * board: cm-t43: convert to DM_I2C
+  * board: chiliboard: convert to DM_I2C
+  * board: shc: convert to DM_I2C
+  * Merge patch series "alist: Implement a pointer list / array of structs"
+  * alist: Add support for an allocated pointer list
+  * lib: Handle a special case with str_to_list()
+  * malloc: Support testing with realloc()
+  * omap3: sniper: Convert to device-tree control and DM I2C
+  * am33xx: Use regular spl_board_init instead of am33xx_spl_board_init
+  * omap: Use spl_soc_init instead of spl_board_init
+  * Merge patch series "omap configuration cleanups"
+  * omap3: sniper: Streamline defconfig
+  * dra7xx: Remove explicit DRAM banks number from defconfigs
+  * omap3: Define DRAM banks number in Kconfig instead of defconfigs
+  * omap3: Define maximum SPL size in Kconfig instead of defconfigs
+  * omap3: Define maximum U-Boot size in Kconfig instead of defconfigs
+  * dra7xx: Define common init stack pointer address in Kconfig
+  * dra7xx: Unify init stack pointer address across boards
+  * am43xx: Define common init stack pointer address in Kconfig
+  * am33xx: Define common init stack pointer address in Kconfig
+  * am33xx: Unify init stack pointer address across boards
+  * omap3: Define common init stack pointer address in Kconfig
+  * omap3: Define common SPL text base in Kconfig instead of defconfigs
+  * usb: gadget: atmel: Add DM_USB_GADGET support
+  * usb: gadget: atmel: Add attach/detach support
+  * usb: gadget: atmel: Rename atmel_usba_start()/_stop() to usba_udc_enable()/_disable()
+  * usb: gadget: atmel: Move usba_udc_pdata() with other static functions
+  * usb: gadget: atmel: Fix typo in usb gadget driver register and unregister
+  * usb: gadget: atmel: Replace printf() and pr_err() by log_err()
+  * usb: gadget: atmel: Sort includes
+
+ -- Joshua Riek <jjriek@verizon.net>  Sat, 21 Dec 2024 11:58:23 -0500
+
+u-boot-rockchip (2024.10-1) oracular; urgency=medium
+
+  * Prepare v2024.10
+  * clk: renesas: rcar-gen3: Fix SSCG caching replacement with MDSEL/PE caching
+  * Update directories for new name of TF-A directories
+  * boot: android: Fix ramdisk loading for v2 header
+  * Update the ARM trusted firmware git URL
+  * Prepare v2024.10-rc6
+  * Merge tag 'u-boot-dfu-20240930' of https://source.denx.de/u-boot/custodians/u-boot-dfu
+  * usb: gadget: cdns3: Fix missing cache operations for non-zero Endpoints
+  * Merge tag 'u-boot-rockchip-20240930' of https://source.denx.de/u-boot/custodians/u-boot-rockchip
+  * regulator: rk8xx: Use buck variable consistently
+  * regulator: rk8xx: Fix buck get and set enabled state on RK806
+  * Merge tag 'u-boot-stm32-20240926' of https://source.denx.de/u-boot/custodians/u-boot-stm
+  * arm: imx: Enable always-on regulators using board specific workaround on DHCOM SoM
+  * ARM: stm32: Fix secure_waitbits() mask check
+  * ARM: stm32: Fix TAMP_SMCR BKP..PROT fields on STM32MP15xx
+  * ram: k3-ddrss: Handle error properly in lpddr4_start
+  * Merge tag 'doc-2024-10-rc6' of https://source.denx.de/u-boot/custodians/u-boot-efi
+  * doc: usage: cmd: ums: fix dependencies
+  * events: correct event_uninit() description
+  * boot: correct struct expo_action description
+  * sandbox: fix OS function descriptions
+  * efi_loader: correct efi_set_variable_int() description
+  * doc: include/getopt.h: remove comments confusing Sphinx
+  * cmd/efidebug: fix some function descriptions
+  * efi_loader: fix some function descriptions
+  * dts: beagleboneai64: Add boothph in chipid node
+  * Merge patch series "mux: mmio: support "reg-mux" compatible"
+  * phy: cadence: sierra: Don't spam console
+  * mux: mmio: Support "reg-mux" compatible
+  * Prepare v2024.10-rc5
+  * doc/develop/sending_patches.rst: Reword where our git tree is slightly
+  * dfu: fix Kconfig dependencies
+  * Merge tag 'doc-2024-10-rc4' of https://source.denx.de/u-boot/custodians/u-boot-efi
+  * binman: Update links for sending patches
+  * bootcount: Update to point to current documentation
+  * doc/mkeficapsule.1: Update homepage link
+  * doc: Update rST to not reference the old wiki
+  * doc/arch/mips.rst: Update toolchain list
+  * doc/arch/m68k.rst: Update toolchain comment
+  * doc/develop/sending_patches.rst: Clarify when to use which branch
+  * scripts/Makefile.lib: do not include CONFIG_DEVICE_TREE_INCLUDES in dtsi_include_list
+  * Merge tag 'u-boot-dfu-20240910' of https://source.denx.de/u-boot/custodians/u-boot-dfu
+  * Merge https://gitlab.denx.de/u-boot/custodians/u-boot-riscv
+  * Merge tag 'u-boot-imx-master-20240909' of https://gitlab.denx.de/u-boot/custodians/u-boot-imx
+  * cmd: add rdcycle test to RISC-V exception command
+  * riscv: show registers in crash dumps by default
+  * riscv: allow to enable SHOW_REGS in main U-Boot only
+  * riscv: CONFIG_SPL_FRAMEPOINTER must depend on CONFIG_SPL
+  * riscv: define find_{first,next}_zero_bit in asm/bitops.h
+  * board: fix compatible property Milk-V Mars CM
+  * clk: sifive: avoid declaring static variables in includes
+  * clk: sifive: append missing \n to messages
+  * imx8mq-u-boot: Pass FIT offset to fix boot regression
+  * Merge branch 'master-spi-fixes' of https://source.denx.de/u-boot/custodians/u-boot-sh
+  * ARM: dts: renesas: Minimize R8A779G0 V4H RPC SPI DT node
+  * mtd: spi: renesas: Add R-Car Gen4 DT compatible
+  * mtd: spi: renesas: Configure RPC PHY timing registers
+  * mtd: spi: renesas: Configure DRDRENR register
+  * mtd: spi: renesas: Write DRDMCR register once
+  * mtd: spi: renesas: Write DREAR register once
+  * mtd: rpc: renesas: Add R-Car Gen4 DT compatible
+  * android_ab: Fixes: Fix backup offset calculation
+  * Merge https://gitlab.denx.de/u-boot/custodians/u-boot-marvell
+  * arm: mvebu: turris_omnia: Switch DDR speed to 1333H when reset 9 is selected
+  * arm: mvebu: turris_omnia: Use the i2c_eeprom misc driver for EEPROM reading in U-Boot proper
+  * arm: mvebu: turris_omnia: Rename variable holding EEPROM udevice
+
+ -- Joshua Riek <jjriek@verizon.net>  Tue, 08 Oct 2024 11:14:48 -0400
+
+u-boot-rockchip (2024.10~rc4-2) oracular; urgency=medium
+
+  * Remove RK356x blobs from include-binaries
+  * Update package description for the Turing RK1
+
+ -- Joshua Riek <jjriek@verizon.net>  Thu, 26 Sep 2024 14:22:12 -0400
+
+u-boot-rockchip (2024.10~rc4-1) oracular; urgency=medium
+
+  * Inital release
+
+ -- Joshua Riek <jjriek@verizon.net>  Wed, 25 Sep 2024 13:34:42 -0400
