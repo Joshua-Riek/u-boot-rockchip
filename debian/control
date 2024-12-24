@@ -23,9 +23,8 @@ Build-Depends:
  uuid-dev,
  libgnutls28-dev
 Standards-Version: 4.6.0
-Homepage: https://www.denx.de/wiki/U-Boot/
-Vcs-Browser: https://salsa.debian.org/debian/u-boot
-Vcs-Git: https://salsa.debian.org/debian/u-boot.git
+Vcs-Browser: https://github.com/Joshua-Riek/u-boot-rockchip
+Vcs-Git: https://github.com/Joshua-Riek/u-boot-rockchip.git
 
 Package: u-boot-orangepi-5
 Architecture: arm64
