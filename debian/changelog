@@ -1,3 +1,9 @@
+u-boot-rockchip (2025.01~rc4-3) plucky; urgency=medium
+
+  * debian: Fix binary encoding for the RK3588 BL31 blob
+
+ -- Joshua Riek <jjriek@verizon.net>  Tue, 24 Dec 2024 14:48:31 -0500
+
 u-boot-rockchip (2025.01~rc4-2) plucky; urgency=medium
 
   * debian: Treat .elf files as binary
