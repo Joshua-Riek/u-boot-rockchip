@@ -50,3 +50,8 @@ u-boot-rockchip_platforms += nanopc-t6-rk3588
 nanopc-t6-rk3588_ddr := rk3588_ddr_lp4_2112MHz_lp5_2400MHz_v1.16.bin
 nanopc-t6-rk3588_bl31 := rk3588_bl31_v1.45.elf
 nanopc-t6-rk3588_pkg := nanopc-t6
+
+u-boot-rockchip_platforms += radxa-zero-3-rk3566
+radxa-zero-3-rk3566_ddr := rk3566_ddr_1056MHz_v1.21.bin
+radxa-zero-3-rk3566_bl31 := rk3568_bl31_v1.44.elf
+radxa-zero-3-rk3566_pkg := radxa-zero3
