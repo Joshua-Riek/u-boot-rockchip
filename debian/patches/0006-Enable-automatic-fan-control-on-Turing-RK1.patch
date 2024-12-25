@@ -1,0 +1,90 @@
+From 7c8ec5e6b9d63c7e85a005a2c2e9a4a929424a09 Mon Sep 17 00:00:00 2001
+From: Sam Edwards <cfsworks@gmail.com>
+Date: Wed, 11 Sep 2024 19:50:32 -0700
+Subject: arm64: dts: rockchip: Enable automatic fan control on Turing RK1
+
+This patch adds thermal trip points and cooling maps to the Turing RK1
+in order to enable automatic control of the external PWM fan. The fan is
+not active below 45C, as the heatsink alone can generally keep the chip
+in this temperature region at idle load. This cooling profile errs on
+the side of quietness, since the RK1 is commonly deployed in a Turing
+Pi 2 clusterboard alongside three others, with additional cooling
+provided at the chassis level.
+
+Helped-by: soxrok2212 <soxrok2212@gmail.com>
+Signed-off-by: Sam Edwards <CFSworks@gmail.com>
+Link: https://lore.kernel.org/r/20240912025034.180233-4-CFSworks@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ .../dts/upstream/src/rockchip/rk3588-turing-rk1.dtsi | 53 ++++++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+
+(limited to 'arch/arm64/rockchip/rk3588-turing-rk1.dtsi')
+
+diff --git a/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi b/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi
+index 9bcb5acdea54da..f6a12fe12d4598 100644
+--- a/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi
++++ b/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi
+@@ -208,6 +208,59 @@ rgmii_phy: ethernet-phy@1 {
+ 	};
+ };
+ 
++&package_thermal {
++	trips {
++		package_active1: trip-active1 {
++			temperature = <45000>;
++			hysteresis = <5000>;
++			type = "active";
++		};
++		package_active2: trip-active2 {
++			temperature = <50000>;
++			hysteresis = <5000>;
++			type = "active";
++		};
++		package_active3: trip-active3 {
++			temperature = <60000>;
++			hysteresis = <5000>;
++			type = "active";
++		};
++		package_active4: trip-active4 {
++			temperature = <70000>;
++			hysteresis = <5000>;
++			type = "active";
++		};
++		package_active5: trip-active5 {
++			temperature = <80000>;
++			hysteresis = <5000>;
++			type = "active";
++		};
++	};
++
++	cooling-maps {
++		map1 {
++			trip = <&package_active1>;
++			cooling-device = <&fan 1 1>;
++		};
++		map2 {
++			trip = <&package_active2>;
++			cooling-device = <&fan 2 2>;
++		};
++		map3 {
++			trip = <&package_active3>;
++			cooling-device = <&fan 3 3>;
++		};
++		map4 {
++			trip = <&package_active4>;
++			cooling-device = <&fan 4 4>;
++		};
++		map5 {
++			trip = <&package_active5>;
++			cooling-device = <&fan 5 5>;
++		};
++	};
++};
++
+ &pcie2x1l1 {
+ 	linux,pci-domain = <1>;
+ 	pinctrl-names = "default";
+-- 
+cgit 1.2.3-korg
+

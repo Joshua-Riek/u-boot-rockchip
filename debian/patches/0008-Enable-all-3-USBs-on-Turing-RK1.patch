@@ -1,0 +1,108 @@
+From 6d14287746d1b5783ee69b3841838e1af5e44dd1 Mon Sep 17 00:00:00 2001
+From: Sam Edwards <cfsworks@gmail.com>
+Date: Mon, 30 Sep 2024 14:06:52 -0700
+Subject: arm64: dts: rockchip: Enable all 3 USBs on Turing RK1
+
+The Turing RK1 contains 3 different USBs:
+- USB0: USB 2.0, OTG
+- USB1: USB 3.0, host
+- USB2: USB 2.0, host
+
+This patch activates the necessary DT nodes to enable all 3 buses.
+
+Future work will be needed on USB0: it is not USB3-capable, so the USB0
+controller needs to be told that there is no USB3 port. Per Jonas's
+suggestion, the USBDP0 node is given a `rockchip,dp-lane-mux` property
+that tells the USBDP driver that USBDP0 is not involved in USB so that
+it can make the necessary configuration changes in hardware.
+Technically, this is USB *controller* configuration, not *PHY*
+configuration, so the underlying code may be moved in the future to the
+USB controller driver instead, freeing up the (software) dependency on
+USBDP0. A TODO comment is added to explain this.
+
+Signed-off-by: Sam Edwards <CFSworks@gmail.com>
+Suggested-by: Jonas Karlman <jonas@kwiboo.se>
+Link: https://lore.kernel.org/r/20240930210652.1232951-1-CFSworks@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ .../dts/upstream/src/rockchip/rk3588-turing-rk1.dtsi | 65 ++++++++++++++++++++++
+ 1 file changed, 65 insertions(+)
+
+(limited to 'dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi')
+
+diff --git a/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi b/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi
+index cedceb98514fed..7fc7fb72e03649 100644
+--- a/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi
++++ b/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi
+@@ -682,3 +682,68 @@ &uart9 {
+ 	pinctrl-0 = <&uart9m0_xfer>;
+ 	status = "okay";
+ };
++
++/* USB 0: USB 2.0 only, OTG-capable */
++&u2phy0 {
++	status = "okay";
++};
++
++&u2phy0_otg {
++	status = "okay";
++};
++
++&usbdp_phy0 {
++	/*
++	 * TODO: On the RK1, USBDP0 drives the DisplayPort pins and is not
++	 * involved in this USB2-only bus. The bus controller (below) needs to
++	 * know that it doesn't have a USB3 port so it can ignore any
++	 * USB3-related signals. This is handled in hardware by updating the
++	 * GRFs corresponding to that bus controller. Alas, Linux currently
++	 * puts the code to do that in the USBDP driver, so USBDP0 must be
++	 * enabled for now.
++	 */
++	rockchip,dp-lane-mux = <0 1 2 3>; /* "No USB lanes" */
++	status = "okay";
++};
++
++&usb_host0_xhci {
++	extcon = <&u2phy0>;
++	maximum-speed = "high-speed";
++	status = "okay";
++};
++
++/* USB 1: USB 3.0, host only */
++&u2phy1 {
++	status = "okay";
++};
++
++&u2phy1_otg {
++	status = "okay";
++};
++
++&usbdp_phy1 {
++	status = "okay";
++};
++
++&usb_host1_xhci {
++	dr_mode = "host";
++	extcon = <&u2phy1>;
++	status = "okay";
++};
++
++/* USB 2: USB 2.0, host only */
++&u2phy2 {
++	status = "okay";
++};
++
++&u2phy2_host {
++	status = "okay";
++};
++
++&usb_host0_ehci {
++	status = "okay";
++};
++
++&usb_host0_ohci {
++	status = "okay";
++};
+-- 
+cgit 1.2.3-korg
+

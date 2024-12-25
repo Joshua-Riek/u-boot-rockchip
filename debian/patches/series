@@ -1,3 +1,10 @@
 0001-include-turing-rk1-rk3588-define-boot-targets.patch
 0002-configs-turing-rk1-rk3588-Enumerate-PCI-buses-before.patch
 0003-board-rockchip-Add-the-Xunlong-Orange-Pi-5B.patch
+0004-Designate-Turing-RK1's-system-power-controller.patch
+0005-Fix-Turing-RK1-PCIe3-hang.patch
+0006-Enable-automatic-fan-control-on-Turing-RK1.patch
+0007-Enable-GPU-on-Turing-RK1.patch
+0008-Enable-all-3-USBs-on-Turing-RK1.patch
+0009-enable-PCIe-on-M.2-E-key-for-Radx.patch
+0010-Split-up-RK3588-s-PCIe-pinctrls.patch

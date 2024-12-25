@@ -1,0 +1,34 @@
+From 875ea82c75f56697fa500f30fabaa49f82f9b229 Mon Sep 17 00:00:00 2001
+From: Sam Edwards <cfsworks@gmail.com>
+Date: Thu, 12 Sep 2024 11:01:48 -0700
+Subject: arm64: dts: rockchip: Designate Turing RK1's system power controller
+
+Currently, the Turing RK1 board reboots when told to power off.
+
+Resolve this by designating the RK806 as the system power controller, so
+that the relevant driver can handle system shutdown requests.
+
+Fixes: 2806a69f3fef ("arm64: dts: rockchip: Add Turing RK1 SoM support")
+Signed-off-by: Sam Edwards <CFSworks@gmail.com>
+Link: https://lore.kernel.org/r/20240912180148.205957-1-CFSworks@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+(limited to 'dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi')
+
+diff --git a/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi b/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi
+index dbaa94ca69f476..432133251e318b 100644
+--- a/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi
++++ b/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi
+@@ -296,6 +296,7 @@ pmic@0 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
+ 			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
++		system-power-controller;
+ 
+ 		vcc1-supply = <&vcc5v0_sys>;
+ 		vcc2-supply = <&vcc5v0_sys>;
+-- 
+cgit 1.2.3-korg

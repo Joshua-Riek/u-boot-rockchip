@@ -1,0 +1,70 @@
+From eb5eb175fee6639fa0c721bdae1825454565f0b5 Mon Sep 17 00:00:00 2001
+From: Sam Edwards <cfsworks@gmail.com>
+Date: Wed, 11 Sep 2024 19:50:34 -0700
+Subject: arm64: dts: rockchip: Enable GPU on Turing RK1
+
+Enable the Mali GPU in the Turing RK1.
+
+This patch also sets the external GPU voltage regulator in the RK806-1
+to "always-on" because it is necessary for this regulator to be active
+when enabling the GPU power domain or the kernel will fail with:
+
+rockchip-pm-domain fd8d8000.power-management:power-controller: \
+    failed to set domain 'gpu', val=0
+rockchip-pm-domain fd8d8000.power-management:power-controller: \
+    failed to get ack on domain 'gpu', val=0x1bffff
+
+...followed by a panic when it attempts to access unavailable QoS
+registers.
+
+Since there is currently no `domain-supply` or similar to express this
+dependency, the only way to ensure that the regulator is never off when
+the GPU power domain is brought up is to ensure that the regulator is
+never off.
+
+Signed-off-by: Sam Edwards <CFSworks@gmail.com>
+Link: https://lore.kernel.org/r/20240912025034.180233-6-CFSworks@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+(limited to 'dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi')
+
+diff --git a/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi b/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi
+index f6a12fe12d4598..cedceb98514fed 100644
+--- a/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi
++++ b/dts/upstream/src/arm64/rockchip/rk3588-turing-rk1.dtsi
+@@ -116,6 +116,11 @@ &gmac1_rgmii_clk
+ 	status = "okay";
+ };
+ 
++&gpu {
++	mali-supply = <&vdd_gpu_s0>;
++	status = "okay";
++};
++
+ &i2c0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c0m2_xfer>;
+@@ -386,6 +391,17 @@ rk806_dvs3_null: dvs3-null-pins {
+ 
+ 		regulators {
+ 			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
++				/*
++				 * RK3588's GPU power domain cannot be enabled
++				 * without this regulator active, but it
++				 * doesn't have to be on when the GPU PD is
++				 * disabled.  Because the PD binding does not
++				 * currently allow us to express this
++				 * relationship, we have no choice but to do
++				 * this instead:
++				 */
++				regulator-always-on;
++
+ 				regulator-boot-on;
+ 				regulator-min-microvolt = <550000>;
+ 				regulator-max-microvolt = <950000>;
+-- 
+cgit 1.2.3-korg
+
