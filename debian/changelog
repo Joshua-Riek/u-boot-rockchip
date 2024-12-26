@@ -1,3 +1,13 @@
+u-boot-rockchip (2025.01~rc4-4) plucky; urgency=medium
+
+  * debian: Refactor makefile rules
+  * debian: Add patches for the Turing RK1 from Linux 6.13
+  * debian: Update VCS git and browser links
+  * debian: Add rules target and control entry for the Radxa Zero 3
+  * debian: Add DDR and BL31 blobs for RK356x
+
+ -- Joshua Riek <jjriek@verizon.net>  Thu, 26 Dec 2024 09:37:17 -0500
+
 u-boot-rockchip (2025.01~rc4-3) plucky; urgency=medium
 
   * debian: Fix binary encoding for the RK3588 BL31 blob
