@@ -3,6 +3,10 @@
 include /usr/share/dpkg/architecture.mk
 include /usr/share/dpkg/pkg-info.mk
 
+DEBIAN_REVISION ?= $(shell echo $(DEB_VERSION) | sed 's/^[^-]*-/-/')
+
+include debian/targets.mk
+
 ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
 CROSS_COMPILE ?= $(DEB_HOST_GNU_TYPE)-
 endif
@@ -13,12 +17,8 @@ else
 NJOBS := -j $(shell nproc)
 endif
 
+# Exclude package notes to avoid FTBFS on oracular
 unexport ELF_PACKAGE_METADATA
-
-include debian/targets.mk
-
-DEBIAN_REVISION ?= $(shell echo $(DEB_VERSION) | sed 's/^[^-]*-/-/')
-ORIG_VERSION ?= $(shell dpkg-parsechangelog -S Version | sed 's/-.*//')
 
 ${u-boot-rockchip_platforms}:
 	@mkdir -p debian/build/$@
@@ -69,7 +69,7 @@ package-%:
 	@dpkg --build "debian/tmp/u-boot" ..
 
 orig:
-	uscan --download-current-version --repack --compression xz
+	@uscan --download-current-version --repack --compression xz
 
 clean:
 	@rm -rf debian/*tmp debian/tmp debian/build debian/files
