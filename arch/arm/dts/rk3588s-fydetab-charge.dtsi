@@ -1,0 +1,180 @@
+// Copyright 2024 The FydeOS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+// Author: Yang Tsao<yang@fydeos.io>
+#include "rk3588s-12c-rk806-single.dtsi"
+#include <dt-bindings/usb/pd.h>
+
+/ {
+	leds {
+		compatible = "gpio-leds";
+
+		red_led: led-0 {
+			default-state = "off";
+			gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_HIGH>;
+			label = "battery_charging";
+		};
+
+		green_led: led-1 {
+			default-state = "on";
+			gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_HIGH>;
+			label = "battery_full";
+		};
+	};
+
+	charge-animation {
+		compatible = "rockchip,uboot-charge";
+		rockchip,uboot-charge-on = <1>;
+		rockchip,uboot-exit-charge-auto = <1>;
+		rockchip,uboot-exit-charge-level = <12>;
+		rockchip,uboot-low-power-voltage = <10825>;
+		rockchip,screen-on-voltage = <10837>;
+	};
+};
+
+&i2c6 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&i2c6m3_xfer>;
+
+	usbc0: husb311@4e {
+		compatible = "hynetek,husb311";
+		reg = <0x4e>;
+		interrupt-parent = <&gpio0>;
+		interrupts = <RK_PC4 IRQ_TYPE_LEVEL_LOW>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&usbc0_int>;
+		vbus-supply = <&vbus5v0_typec>;
+		status = "okay";
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
+				usbc0_role_sw: endpoint@0 {
+					remote-endpoint = <&dwc3_0_role_switch>;
+				};
+			};
+		};
+
+		usb_con: connector {
+			compatible = "usb-c-connector";
+			label = "USB-C";
+			data-role = "dual";
+			power-role = "dual";
+			try-power-role = "sink";
+			op-sink-microwatt = <1000000>;
+					sink-pdos =
+						<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
+						 PDO_FIXED(9000, 3000, PDO_FIXED_USB_COMM)
+						 PDO_FIXED(20000, 2500, PDO_FIXED_USB_COMM)>;
+					source-pdos =
+						<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
+			altmodes {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				altmode@0 {
+					reg = <0>;
+					svid = <0xff01>;
+					vdo = <0xffffffff>;
+				};
+			};
+		};
+	};
+
+	sc8886: sc8886@6b {
+    status = "okay";
+    compatible = "ti,bq25703";
+    reg = <0x6b>;
+    ti,usb-charger-detection = <&usbc0>;
+
+    interrupt-parent = <&gpio0>;
+    interrupts = <RK_PD5 IRQ_TYPE_LEVEL_LOW>;
+    otg-mode-en-gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
+    pinctrl-names = "default";
+    pinctrl-0 = <&charger_ok>;
+    extcon = <&usbc0>;
+    ti,charge-current = <2500000>;
+    ti,max-input-voltage = <20000000>;
+    ti,max-input-current = <5000000>;
+    ti,max-charge-voltage = <13200000>;
+    ti,input-current = <3000000>;
+    ti,input-current-sdp = <3000000>;
+    ti,input-current-dcp = <3000000>;
+    ti,input-current-cdp = <3000000>;
+    ti,minimum-sys-voltage = <9216000>;
+    ti,otg-voltage = <5000000>;
+    ti,otg-current = <3000000>;
+    pd-charge-only = <0>;
+    regulators {
+        vbus5v0_typec: vbus5v0-typec {
+        regulator-compatible = "otg-vbus";
+        regulator-name = "vbus5v0_typec";
+    		};
+    };
+  };
+};
+
+&u2phy0 {
+	status = "okay";
+};
+
+&u2phy0_otg {
+	status = "okay";
+	rockchip,typec-vbus-det;
+};
+
+&usbdrd3_0 {
+	status = "okay";
+};
+
+&usbdrd_dwc3_0 {
+	status = "okay";
+	dr_mode = "otg";
+	usb-role-switch;
+	port {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		dwc3_0_role_switch: endpoint@0 {
+			reg = <0>;
+			remote-endpoint = <&usbc0_role_sw>;
+		};
+	};
+};
+
+&usbhost_dwc3_0 {
+	status = "disabled";
+};
+
+&usbhost3_0 {
+	status = "okay";
+};
+
+&i2c5 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&i2c5m3_xfer>;
+
+	battery: sbs-battery@b {
+		status = "okay";
+		compatible = "sbs,sbs-battery";
+		reg = <0x0b>;
+		sbs,i2c-retry-count = <100>;
+	};
+};
+
+&pinctrl {
+	charger {
+		charger_ok: charger_ok {
+			rockchip,pins = <0 RK_PD5 RK_FUNC_GPIO &pcfg_pull_up>,
+							<4 RK_PA6 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
+
+	usb-typec {
+		usbc0_int: usbc0-int {
+			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_up>;
+		};
+	};
+};
