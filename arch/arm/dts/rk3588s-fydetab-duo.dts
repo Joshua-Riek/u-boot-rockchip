@@ -66,6 +66,18 @@
 		vin-supply = <&vcc_sysin>;
 	};
 
+	
+	vcc_sd: vcc-sd-power {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc_sd";
+		enable-active-high;
+		regulator-always-on;
+		regulator-boot-on;
+		gpio = <&gpio4 RK_PB4 GPIO_ACTIVE_HIGH>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&vcc_sd_en_pin>;
+	};
+
 	adc-keys {
 		compatible = "adc-keys";
 		io-channels = <&saradc 1>;
@@ -113,6 +125,11 @@
 		rockchip,uboot-low-power-voltage = <10825>;
 		rockchip,screen-on-voltage = <10837>;
 	};
+};
+
+&sdmmc {
+	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+	vmmc-supply = <&vcc_sd>;
 };
 
 &u2phy0 {
@@ -641,5 +658,9 @@
 
 	usbc0_int: usbc0-int {
 		rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_up>;
+	};
+
+	vcc_sd_en_pin: vcc-sd-en-pin {
+		rockchip,pins = <4 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
 	};
 };

@@ -1004,6 +1004,13 @@ config ROCKCHIP_EMMC_IOMUX
 	help
 	  This enable U-Boot to config EMMC iomux.
 
+config ROCKCHIP_SD_4BIT
+	bool "ROCKCHIP SD 4BIT"
+	default n
+	depends on ROCKCHIP_EMMC_IOMUX
+	help
+	  This enable U-Boot to config EMMC iomux.
+
 config ROCKCHIP_NAND_IOMUX
 	bool "ROCKCHIP NAND IOMUX"
 	default n
