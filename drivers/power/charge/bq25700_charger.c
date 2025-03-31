@@ -256,6 +256,7 @@ static void bq25703_charger_current_init(struct bq25700 *charger)
 	int pd_inputvol,  pd_inputcurrent;
 	u16 vol_idx = 0, cur_idx;
 	u16 temp;
+	bool charge_state;
 
 	temp = bq25700_read(charger, BQ25703_CHARGEOPTION0_REG);
 	temp &= (~WATCHDOG_ENSABLE);
@@ -290,11 +291,14 @@ static void bq25703_charger_current_init(struct bq25700 *charger)
 		else
 			bq25700_write(charger, BQ25703_INPUTCURREN_REG,
 				      sdp_inputcurrent);
+		printf("DEBUG: no pd output, usb_type:%d\n", bq25700_get_usb_type());
 	}
 
-	if (bq25703_charger_status(charger))
+	charge_state = bq25703_charger_status(charger);
+	if (charge_state)
 		bq25700_write(charger, BQ25703_CHARGECURREN_REG,
 			      charge_current);
+	printf("DEBUG: %s, charge_state:%d\n", __func__, charge_state);
 }
 
 static int bq25700_ofdata_to_platdata(struct udevice *dev)

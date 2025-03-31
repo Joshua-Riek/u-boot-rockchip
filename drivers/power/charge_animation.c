@@ -235,7 +235,7 @@ static int charge_animation_ofdata_to_platdata(struct udevice *dev)
 	}
 
 	debug("mode: uboot=%d, android=%d; exit: soc=%d%%, voltage=%dmv;\n"
-	      "lp_voltage=%d%%, screen_on=%dmv\n",
+	      "lp_voltage=%dmv, screen_on=%dmv\n",
 	      pdata->uboot_charge, pdata->android_charge,
 	      pdata->exit_charge_level, pdata->exit_charge_voltage,
 	      pdata->low_power_voltage, pdata->screen_on_voltage);
@@ -408,6 +408,7 @@ static void autowakeup_timer_uninit(void)
 #ifdef CONFIG_DRM_ROCKCHIP
 static void charge_show_bmp(const char *name)
 {
+	printf("DEBUG: %s, bmp:%s\n", __func__, name);
 	rockchip_show_bmp(name);
 }
 
@@ -439,6 +440,7 @@ static int leds_update(struct udevice *dev, int soc)
 			       (ledst == LEDST_ON) ? "ON" : "OFF", ret);
 			return ret;
 		}
+		printf("DEBUG: set charging led %s\n", (ledst == LEDST_ON) ? "ON" : "OFF");
 	}
 
 	if (priv->led_full) {
@@ -449,6 +451,7 @@ static int leds_update(struct udevice *dev, int soc)
 			       ledst == LEDST_ON ? "ON" : "OFF", ret);
 			return ret;
 		}
+		printf("DEBUG: set full led %s\n", (ledst == LEDST_ON) ? "ON" : "OFF");
 	}
 
 	return 0;
@@ -516,8 +519,8 @@ static int charge_extrem_low_power(struct udevice *dev)
 		/* Check charger online */
 		charging = fg_charger_get_chrg_online(dev);
 		if (charging <= 0) {
-			printf("%s: Not charging, online=%d. Shutdown...\n",
-			       __func__, charging);
+			printf("%s: Not charging, online=%d, voltage:%d, low_power:%d, Shutdown...\n",
+							       __func__, charging, voltage, pdata->low_power_voltage + 50);
 			sys_shutdown(dev);
 			continue;
 		}
@@ -1056,6 +1059,10 @@ static int fg_charger_get_device(struct udevice **fuel_gauge,
 			*charger = dev;
 		}
 	}
+
+	debug("DEBUG: fuel:%p, charger:%p\n", *fuel_gauge, *charger);
+	if (*charger)
+		debug("DEBUG: charge online:%d, voltage:%d\n", fuel_gauge_get_chrg_online(*charger), fuel_gauge_get_voltage(*charger));
 
 	return (*fuel_gauge) ? 0 : -ENODEV;
 }
