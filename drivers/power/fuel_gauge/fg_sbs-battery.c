@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 // Author: Yang Tsao<yang@fydeos.io>
-#define DEBUG 1
 #include <common.h>
 #include <dm.h>
 #include <errno.h>
