@@ -73,6 +73,9 @@ struct rockchip_panel_priv {
 	struct gpio_desc spi_sdi_gpio;
 	struct gpio_desc spi_scl_gpio;
 	struct gpio_desc spi_cs_gpio;
+
+	struct gpio_desc avdd_gpio;
+	struct gpio_desc avee_gpio;
 };
 
 static inline int get_panel_cmd_type(const char *s)
@@ -311,6 +314,16 @@ static void panel_simple_prepare(struct rockchip_panel *panel)
 	if (plat->delay.prepare)
 		mdelay(plat->delay.prepare);
 
+	if (dm_gpio_is_valid(&priv->avdd_gpio)) {
+		dm_gpio_set_value(&priv->avdd_gpio, 1);
+		mdelay(2);
+	}
+
+	if (dm_gpio_is_valid(&priv->avee_gpio)) {
+		dm_gpio_set_value(&priv->avee_gpio, 1);
+		mdelay(2);
+	}
+
 	if (dm_gpio_is_valid(&priv->reset_gpio))
 		dm_gpio_set_value(&priv->reset_gpio, 1);
 
@@ -367,6 +380,12 @@ static void panel_simple_unprepare(struct rockchip_panel *panel)
 
 	if (dm_gpio_is_valid(&priv->enable_gpio))
 		dm_gpio_set_value(&priv->enable_gpio, 0);
+
+	if (dm_gpio_is_valid(&priv->avdd_gpio))
+		dm_gpio_set_value(&priv->avdd_gpio, 0);
+
+	if (dm_gpio_is_valid(&priv->avee_gpio))
+		dm_gpio_set_value(&priv->avee_gpio, 0);
 
 	if (priv->power_supply)
 		regulator_set_enable(priv->power_supply, plat->power_invert);
@@ -494,6 +513,20 @@ static int rockchip_panel_probe(struct udevice *dev)
 				   &priv->reset_gpio, GPIOD_IS_OUT);
 	if (ret && ret != -ENOENT) {
 		printf("%s: Cannot get reset GPIO: %d\n", __func__, ret);
+		return ret;
+	}
+
+	ret = gpio_request_by_name(dev, "avdd-gpios", 0,
+				   &priv->avdd_gpio, GPIOD_IS_OUT);
+	if (ret && ret != -ENOENT) {
+		printf("%s: Cannot get AVDD GPIO: %d\n", __func__, ret);
+		return ret;
+	}
+
+	ret = gpio_request_by_name(dev, "avee-gpios", 0,
+				   &priv->avee_gpio, GPIOD_IS_OUT);
+	if (ret && ret != -ENOENT) {
+		printf("%s: Cannot get AVEE GPIO: %d\n", __func__, ret);
 		return ret;
 	}
 
