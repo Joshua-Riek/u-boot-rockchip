@@ -64,6 +64,17 @@
 		pinctrl-0 = <&vcc_lcd_en_pin>;
 		vin-supply = <&vcc_5v0>;
 	};
+	
+	vcc_sd: vcc-sd-power {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc_sd";
+		enable-active-high;
+		regulator-always-on;
+		regulator-boot-on;
+		gpio = <&gpio4 RK_PB4 GPIO_ACTIVE_HIGH>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&vcc_sd_en_pin>;
+	};
 
 	backlight: backlight {
 		compatible = "pwm-backlight";
@@ -545,6 +556,11 @@
 	};
 };
 
+&sdmmc {
+	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+	vmmc-supply = <&vcc_sd>;
+};
+
 &pinctrl {
 	pwr {
 		vcc_5v0_en: vcc_5v0_en {
@@ -567,6 +583,12 @@
 
 		avee_lcd_gpio: avee-lcd-gpio {
 			rockchip,pins = <3 RK_PA6 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
+
+	sdcard {
+		vcc_sd_en_pin: vcc-sd-en-pin {
+			rockchip,pins = <4 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 	};
 
