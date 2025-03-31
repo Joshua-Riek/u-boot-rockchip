@@ -27,9 +27,9 @@
 		compatible = "rockchip,uboot-charge";
 		rockchip,uboot-charge-on = <1>;
 		rockchip,uboot-exit-charge-auto = <1>;
-		rockchip,uboot-exit-charge-level = <8>;
-		rockchip,uboot-low-power-voltage = <12000>;
-		rockchip,screen-on-voltage = <12200>;
+		rockchip,uboot-exit-charge-level = <12>;
+		rockchip,uboot-low-power-voltage = <10825>;
+		rockchip,screen-on-voltage = <10837>;
 	};
 
 };

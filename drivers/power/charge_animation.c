@@ -3,7 +3,6 @@
  *
  * SPDX-License-Identifier:     GPL-2.0+
  */
-#define DEBUG
 #include <asm/io.h>
 #include <common.h>
 #include <boot_rkimg.h>
@@ -408,6 +407,7 @@ static void autowakeup_timer_uninit(void)
 #ifdef CONFIG_DRM_ROCKCHIP
 static void charge_show_bmp(const char *name)
 {
+  printf("%s, bmp:%s\n", __func__, name);
 	rockchip_show_bmp(name);
 }
 
@@ -439,6 +439,7 @@ static int leds_update(struct udevice *dev, int soc)
 			       (ledst == LEDST_ON) ? "ON" : "OFF", ret);
 			return ret;
 		}
+    printf("set charging led %s\n", (ledst == LEDST_ON) ? "ON" : "OFF");
 	}
 
 	if (priv->led_full) {
@@ -449,6 +450,7 @@ static int leds_update(struct udevice *dev, int soc)
 			       ledst == LEDST_ON ? "ON" : "OFF", ret);
 			return ret;
 		}
+    printf("set full led %s\n", (ledst == LEDST_ON) ? "ON" : "OFF");
 	}
 
 	return 0;
@@ -516,8 +518,8 @@ static int charge_extrem_low_power(struct udevice *dev)
 		/* Check charger online */
 		charging = fg_charger_get_chrg_online(dev);
 		if (charging <= 0) {
-			printf("%s: Not charging, online=%d. Shutdown...\n",
-			       __func__, charging);
+			printf("%s: Not charging, online=%d. vol:%d, low_power:%d, Shutdown...\n",
+			       __func__, charging, voltage, pdata->low_power_voltage + 50);
 			sys_shutdown(dev);
 			continue;
 		}
@@ -642,7 +644,7 @@ static int charge_animation_show(struct udevice *dev)
 			printf("Not charging and low power, Shutdown...\n");
 			show_idx = IMAGE_LOWPOWER_IDX(image_num);
 			charge_show_bmp(image[show_idx].name);
-
+      mdelay(1000);
 			sys_shutdown(dev);
 		}
 	}
