@@ -154,7 +154,7 @@ static int sbs_init(struct sbs_info *sbs)
 	}
 	sbs_get_temperature(sbs->dev, &ret);
   if (ret < -100 || ret > 100)
-		SBS_DBG("invalid temp:%d\n", ret);
+		printf("invalid temp:%d\n", ret);
 	return 0;
 }
 
