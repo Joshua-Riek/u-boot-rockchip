@@ -295,7 +295,7 @@ void rockchip_set_bootdev(struct blk_desc *desc)
  * some special boards.
  */
 #define KEY_DOWN_MIN_VAL	0
-#define KEY_DOWN_MAX_VAL	30
+#define KEY_DOWN_MAX_VAL	20000
 
 __weak int rockchip_dnl_key_pressed(void)
 {
@@ -325,7 +325,33 @@ __weak int rockchip_dnl_key_pressed(void)
 	return 0;
 }
 
-int rockchip_show_loader_logo(void);
+__weak int rockchip_ums_key_pressed(void)
+{
+#if defined(CONFIG_DM_KEY)
+  return key_is_pressed(key_read(KEY_VOLUMEDOWN));
+
+#elif defined(CONFIG_ADC)
+  const void *blob = gd->fdt_blob;
+  int node, ret, channel = 1;
+  u32 val, chns[2];
+
+  node = fdt_node_offset_by_compatible(blob, 0, "adc-keys");
+  if (node >= 0) {
+    if (!fdtdec_get_int_array(blob, node, "io-channels", chns, 2))
+      channel = chns[1];
+  }
+
+  ret = adc_channel_single_shot("saradc", channel, &val);
+  if (ret) {
+    printf("%s: Failed to read saradc, ret=%d\n", __func__, ret);
+    return 0;
+  }
+
+  return ((val >= 20000) && (val <= 500000));
+#endif
+
+  return 0;
+}
 
 void setup_download_mode(void)
 {
@@ -353,7 +379,7 @@ void setup_download_mode(void)
 			printf("%sentering download mode...\n",
 			       IS_ENABLED(CONFIG_CMD_ROCKUSB) ?
 			       "" : "no rockusb, ");
-			rockchip_show_loader_logo();
+			rockchip_show_logo();
 
 			/* try rockusb download and brom download */
 			run_command("download", 0);
@@ -364,6 +390,9 @@ void setup_download_mode(void)
 			printf("entering recovery mode!\n");
 			env_set("reboot_mode", "recovery-key");
 		}
+	} else if (rockchip_ums_key_pressed()) {
+		rockchip_show_bmp("fydetab_usb.bmp");
+		run_command("ums 0 mmc 0", 0);
 	} else if (is_hotkey(HK_FASTBOOT)) {
 		env_set("reboot_mode", "fastboot");
 	}

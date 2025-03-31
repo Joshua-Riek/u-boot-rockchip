@@ -474,8 +474,10 @@ int board_late_init(void)
 #endif
 
 #ifdef CONFIG_DRM_ROCKCHIP
+#if 0
 	if (rockchip_get_boot_mode() != BOOT_MODE_QUIESCENT)
 		rockchip_show_logo();
+#endif
 #endif
 #ifdef CONFIG_ROCKCHIP_EINK_DISPLAY
 	rockchip_eink_show_uboot_logo();
@@ -629,6 +631,9 @@ void arch_preboot_os(uint32_t bootm_state, bootm_headers_t *images)
 	if (!(bootm_state & BOOTM_STATE_OS_PREP))
 		return;
 
+#ifdef CONFIG_DRM_ROCKCHIP
+  rockchip_close_display();
+#endif
 #ifdef CONFIG_ARM64
 	u8 *data = (void *)images->ep;
 
