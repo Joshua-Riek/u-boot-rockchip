@@ -37,6 +37,7 @@
 #include <u-boot/sha1.h>
 #include <u-boot/sha256.h>
 #include <linux/usb/phy-rockchip-usb2.h>
+#include <video_rockchip.h>
 
 DECLARE_GLOBAL_DATA_PTR;
 
@@ -324,6 +325,8 @@ __weak int rockchip_dnl_key_pressed(void)
 	return 0;
 }
 
+int rockchip_show_loader_logo(void);
+
 void setup_download_mode(void)
 {
 	int vbus = 1; /* Assumed 1 in case of no rockusb */
@@ -350,6 +353,7 @@ void setup_download_mode(void)
 			printf("%sentering download mode...\n",
 			       IS_ENABLED(CONFIG_CMD_ROCKUSB) ?
 			       "" : "no rockusb, ");
+			rockchip_show_loader_logo();
 
 			/* try rockusb download and brom download */
 			run_command("download", 0);

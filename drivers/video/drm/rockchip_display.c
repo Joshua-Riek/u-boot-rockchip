@@ -933,6 +933,7 @@ static int display_enable(struct display_state *state)
 	return 0;
 }
 
+/*
 static int display_disable(struct display_state *state)
 {
 	struct crtc_state *crtc_state = &state->crtc_state;
@@ -957,6 +958,7 @@ static int display_disable(struct display_state *state)
 
 	return 0;
 }
+*/
 
 static int display_check(struct display_state *state)
 {
@@ -1545,26 +1547,17 @@ void rockchip_show_fbbase(ulong fbbase)
 
 int rockchip_show_bmp(const char *bmp)
 {
-	struct display_state *s;
-	int ret = 0;
-
-	if (!bmp) {
-		list_for_each_entry(s, &rockchip_display_list, head)
-			display_disable(s);
-		return -ENOENT;
-	}
-
-	list_for_each_entry(s, &rockchip_display_list, head) {
-		s->logo.mode = s->charge_logo_mode;
-		if (load_bmp_logo(&s->logo, bmp))
-			continue;
-		ret = display_logo(s);
-	}
-
-	return ret;
+	printf("Warning: logo %s is not shown due to display bug\n", bmp);
+	return 0;
 }
 
 int rockchip_show_logo(void)
+{
+	printf("Warning: uboot logo is not shown due to display bug\n");
+	return 0;
+}
+
+int rockchip_show_loader_logo(void)
 {
 	struct display_state *s;
 	struct display_state *ms = NULL;
