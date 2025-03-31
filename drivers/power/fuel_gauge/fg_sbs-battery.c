@@ -108,7 +108,7 @@ static int sbs_get_temperature(struct udevice *dev, int *temp)
   int bat_tmp = sbs_read_int(sbs, SBS_TEMP_REG);
 	if (bat_tmp == -EINVAL)
 		return bat_tmp;
-	bat_tmp = bat_tmp * 10 - 273;
+	bat_tmp = bat_tmp / 10 - 273;
   SBS_DBG("sbs temp:%d in CEL\n", bat_tmp);
   *temp = bat_tmp;
 	return 0;
@@ -155,6 +155,8 @@ static int sbs_init(struct sbs_info *sbs)
 	sbs_get_temperature(sbs->dev, &ret);
   if (ret < -100 || ret > 100)
 		printf("invalid temp:%d\n", ret);
+  else
+    printf("battery temp:%d\n", ret);
 	return 0;
 }
 
@@ -163,7 +165,7 @@ static int sbs_fg_probe(struct udevice *dev)
   struct sbs_info *sbs = dev_get_priv(dev);
 
   sbs->dev = dev;
-  printf("sbs driver version-20240712");
+  printf("sbs driver version-20240712\n");
   sbs_init(sbs);
   printf("sbs vol: %d, soc: %d\n",
          sbs_get_vol(sbs), sbs_get_soc(sbs));
