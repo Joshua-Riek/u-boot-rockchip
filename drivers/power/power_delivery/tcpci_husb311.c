@@ -160,9 +160,10 @@ static int husb311_probe(struct udevice *dev)
 
 	chip->data.init = husb311_init;
 	chip->tcpci = tcpci_register_port(chip->udev, &chip->data);
-	if (IS_ERR(chip->tcpci))
+	if (IS_ERR(chip->tcpci)) {
+    printf("%s, fail to register port ret:%ld\n", __func__, PTR_ERR(chip->tcpci));
 		return PTR_ERR(chip->tcpci);
-
+  }
 	return 0;
 }
 
