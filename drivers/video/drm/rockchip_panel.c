@@ -316,12 +316,12 @@ static void panel_simple_prepare(struct rockchip_panel *panel)
 
 	if (dm_gpio_is_valid(&priv->avdd_gpio)) {
 		dm_gpio_set_value(&priv->avdd_gpio, 1);
-		mdelay(2);
+		mdelay(5);
 	}
 
 	if (dm_gpio_is_valid(&priv->avee_gpio)) {
 		dm_gpio_set_value(&priv->avee_gpio, 1);
-		mdelay(2);
+		mdelay(10);
 	}
 
 	if (dm_gpio_is_valid(&priv->reset_gpio))
@@ -329,9 +329,6 @@ static void panel_simple_prepare(struct rockchip_panel *panel)
 
 	if (plat->delay.reset)
 		mdelay(plat->delay.reset);
-
-	if (dm_gpio_is_valid(&priv->reset_gpio))
-		dm_gpio_set_value(&priv->reset_gpio, 0);
 
 	if (plat->delay.init)
 		mdelay(plat->delay.init);
@@ -374,18 +371,22 @@ static void panel_simple_unprepare(struct rockchip_panel *panel)
 		if (ret)
 			printf("failed to send off cmds: %d\n", ret);
 	}
-
-	if (dm_gpio_is_valid(&priv->reset_gpio))
-		dm_gpio_set_value(&priv->reset_gpio, 1);
-
+  mdelay(2);
 	if (dm_gpio_is_valid(&priv->enable_gpio))
 		dm_gpio_set_value(&priv->enable_gpio, 0);
+  mdelay(2);
 
-	if (dm_gpio_is_valid(&priv->avdd_gpio))
-		dm_gpio_set_value(&priv->avdd_gpio, 0);
+	if (dm_gpio_is_valid(&priv->reset_gpio))
+		dm_gpio_set_value(&priv->reset_gpio, 0);
+  mdelay(2);
 
 	if (dm_gpio_is_valid(&priv->avee_gpio))
 		dm_gpio_set_value(&priv->avee_gpio, 0);
+  mdelay(2);
+
+	if (dm_gpio_is_valid(&priv->avdd_gpio))
+		dm_gpio_set_value(&priv->avdd_gpio, 0);
+  mdelay(2);
 
 	if (priv->power_supply)
 		regulator_set_enable(priv->power_supply, plat->power_invert);

@@ -40,6 +40,13 @@
 			label = "volume up";
 			press-threshold-microvolt = <1750>;
 		};
+
+    volumedown-key {
+      u-boot,dm-pre-reloc;
+      linux,code = <KEY_VOLUMEDOWN>;
+      label = "volume down";
+      press-threshold-microvolt = <500000>;
+    };
 	};
 
 	vcc_5v0: vcc-5v0 {
@@ -64,7 +71,7 @@
 		pinctrl-0 = <&vcc_lcd_en_pin>;
 		vin-supply = <&vcc_5v0>;
 	};
-	
+
 	vcc_sd: vcc-sd-power {
 		compatible = "regulator-fixed";
 		regulator-name = "vcc_sd";
@@ -136,7 +143,7 @@
 		#phy-cells = <0>;
 		status = "okay";
 	};
-	
+
 	vop: vop@fdd90000 {
 		compatible = "rockchip,rk3588-vop";
 		reg = <0x0 0xfdd90000 0x0 0x4200>, <0x0 0xfdd95000 0x0 0x1000>;
@@ -234,8 +241,8 @@
 
 			vp2: port@2 {
 				cursor-win-id=<ROCKCHIP_VOP2_ESMART2>;
-				rockchip,plane-mask = <(1 << ROCKCHIP_VOP2_CLUSTER2 | 1 << ROCKCHIP_VOP2_ESMART2)>;
-				rockchip,primary-plane = <ROCKCHIP_VOP2_CLUSTER2>;
+				rockchip,plane-mask = <(1 << ROCKCHIP_VOP2_CLUSTER3 | 1 << ROCKCHIP_VOP2_ESMART2)>;
+				rockchip,primary-plane = <ROCKCHIP_VOP2_CLUSTER3>;
 				#address-cells = <1>;
 				#size-cells = <0>;
 				reg = <2>;
@@ -267,8 +274,8 @@
 
 			vp3: port@3 {
 				cursor-win-id=<ROCKCHIP_VOP2_ESMART3>;
-				rockchip,plane-mask = <(1 << ROCKCHIP_VOP2_CLUSTER3 | 1 << ROCKCHIP_VOP2_ESMART3)>;
-				rockchip,primary-plane = <ROCKCHIP_VOP2_CLUSTER3>;
+				rockchip,plane-mask = <(1 << ROCKCHIP_VOP2_CLUSTER2 | 1 << ROCKCHIP_VOP2_ESMART3)>;
+				rockchip,primary-plane = <ROCKCHIP_VOP2_CLUSTER2>;
 				#address-cells = <1>;
 				#size-cells = <0>;
 				reg = <3>;
@@ -346,10 +353,10 @@
 
 			route_dsi0: route-dsi0 {
 				status = "okay";
-				logo,uboot = "logo.bmp";
-				logo,kernel = "logo_kernel.bmp";
-				logo,mode = "center";
-				charge_logo,mode = "center";
+				logo,uboot = "fydetab_recovery.bmp";
+				logo,kernel = "fydetab_usb.bmp";
+				logo,mode = "fullscreen";
+				charge_logo,mode = "fullscreen";
 				connect = <&vp2_out_dsi0>;
 			};
 
@@ -416,14 +423,14 @@
 		reg = <0>;
 
 		power-supply = <&vcc_lcd_en>;
-		reset-gpios = <&gpio3 RK_PC6 GPIO_ACTIVE_LOW>;
+		reset-gpios = <&gpio3 RK_PC6 GPIO_ACTIVE_HIGH>;
 		avdd-gpios = <&gpio3 RK_PA7 GPIO_ACTIVE_HIGH>;
 		avee-gpios = <&gpio3 RK_PA6 GPIO_ACTIVE_HIGH>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&avdd_lcd_gpio &avee_lcd_gpio &lcd_rst_gpio>;
-		
-		prepare-delay-ms = <2>;
-		reset-delay-ms = <2>;
+
+		prepare-delay-ms = <20>;
+		reset-delay-ms = <12>;
 		init-delay-ms = <65>;
 		enable-delay-ms = <40>;
 
