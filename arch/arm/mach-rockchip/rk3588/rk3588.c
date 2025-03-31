@@ -1057,6 +1057,10 @@ int arch_cpu_init(void)
 	 */
 	writel(QOS_PRIORITY_LEVEL(3, 3), VOP_M0_PRIORITY_REG);
 	writel(QOS_PRIORITY_LEVEL(3, 3), VOP_M1_PRIORITY_REG);
+
+	/* Disable force_jtag flag in GRF to enable 4-bit sdcard */
+	writel(0x40000000, SYS_GRF_BASE + SYS_GRF_SOC_CON6);
+
 #endif
 
 	/* Select usb otg0 phy status to 0 that make rockusb can work at high-speed */
