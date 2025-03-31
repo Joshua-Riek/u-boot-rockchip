@@ -3,7 +3,7 @@
  *
  * SPDX-License-Identifier:     GPL-2.0+
  */
-
+#define DEBUG
 #include <asm/io.h>
 #include <common.h>
 #include <boot_rkimg.h>
@@ -73,13 +73,13 @@ struct charge_animation_priv {
  * 2. You must set the failed image as last one and soc = -1 !!!
  */
 static const struct charge_image image[] = {
-	{ .name = "battery_0.bmp", .soc = 5, .period = 600 },
-	{ .name = "battery_1.bmp", .soc = 20, .period = 600 },
-	{ .name = "battery_2.bmp", .soc = 40, .period = 600 },
-	{ .name = "battery_3.bmp", .soc = 60, .period = 600 },
-	{ .name = "battery_4.bmp", .soc = 80, .period = 600 },
-	{ .name = "battery_5.bmp", .soc = 100, .period = 600 },
-	{ .name = "battery_fail.bmp", .soc = -1, .period = 1000 },
+	{ .name = "fydetab_batt1.bmp", .soc = 5, .period = 600 },
+	{ .name = "fydetab_batt2.bmp", .soc = 20, .period = 600 },
+	{ .name = "fydetab_batt1.bmp", .soc = 40, .period = 600 },
+	{ .name = "fydetab_batt2.bmp", .soc = 60, .period = 600 },
+	{ .name = "fydetab_batt1.bmp", .soc = 80, .period = 600 },
+	{ .name = "fydetab_batt2.bmp", .soc = 100, .period = 600 },
+	{ .name = "fydetab_batt_fail.bmp", .soc = -1, .period = 1000 },
 };
 
 static int regulators_parse_assigned_mem_state(struct udevice *dev)
@@ -235,7 +235,7 @@ static int charge_animation_ofdata_to_platdata(struct udevice *dev)
 	}
 
 	debug("mode: uboot=%d, android=%d; exit: soc=%d%%, voltage=%dmv;\n"
-	      "lp_voltage=%d%%, screen_on=%dmv\n",
+	      "lp_voltage=%dmv, screen_on=%dmv\n",
 	      pdata->uboot_charge, pdata->android_charge,
 	      pdata->exit_charge_level, pdata->exit_charge_voltage,
 	      pdata->low_power_voltage, pdata->screen_on_voltage);
@@ -1056,6 +1056,11 @@ static int fg_charger_get_device(struct udevice **fuel_gauge,
 			*charger = dev;
 		}
 	}
+
+  debug("fuel:%p, charger:%p\n", *fuel_gauge, *charger);
+  if (*charger) {
+    debug("charge online:%d, voltage:%d\n", fuel_gauge_get_chrg_online(*charger), fuel_gauge_get_voltage(*charger));
+  }
 
 	return (*fuel_gauge) ? 0 : -ENODEV;
 }
