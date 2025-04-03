@@ -6,7 +6,7 @@
 #
 
 # Process args and auto set variables
-source ${srctree}/arch/arm/mach-rockchip/fit_args.sh
+source ./arch/arm/mach-rockchip/fit_args.sh
 rm -f ${srctree}/*.digest ${srctree}/*.bin.gz ${srctree}/bl31_0x*.bin
 
 # Periph register
@@ -110,7 +110,7 @@ function gen_kfdt_node()
 
 function gen_bl31_node()
 {
-	${srctree}/arch/arm/mach-rockchip/decode_bl31.py
+	./arch/arm/mach-rockchip/decode_bl31.py
 
 	NUM=1
 	for ATF in `ls -1 -S bl31_0x*.bin`
